@@ -1,0 +1,173 @@
+<!-- Search Form -->
+<div class="container">
+  <header class="my-4">
+    <h1 class="text-center">Bus Booking System</h1>
+  </header>
+  <section>
+    <div class="container mt-5 d-flex justify-content-center">
+      <form class="search-form d-flex align-items-center shadow-lg">
+        <div class="row w-100 text-white">
+          <div class="col-md-3 d-flex align-items-center">
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-bus-front"></i></span>
+              <select class="form-select" name="fromLocation" [(ngModel)]="searchObj.fromLocation">
+                <option value="">Select from Location</option>
+                @for (item of busList; track $index) {
+                <option [value]="item.fromLocation">{{item.fromLocation}}</option>
+                }
+              </select>
+            </div>
+          </div>
+
+          <div class="col-md-1 text-center d-flex align-items-center justify-content-center arrow">
+            <i class="fa-solid fa-right-left"></i>
+          </div>
+
+          <div class="col-md-3 d-flex align-items-center">
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-bus-front"></i></span>
+              <select class="form-select" name="toLocation" [(ngModel)]="searchObj.toLocation">
+                <option value="">Select to Location</option>
+                @for (item of busList; track $index) {
+                <option [value]="item.toLocation">{{item.toLocation}}</option>
+                }
+              </select>
+            </div>
+          </div>
+
+          <div class="col-md-3 d-flex align-items-center">
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-calendar"></i></span>
+              <input type="date" class="form-control" name="travelDate" [(ngModel)]="searchObj.travelDate"
+                placeholder="Date" value="17 Aug 2024">
+            </div>
+          </div>
+
+          <div class="col-md-2 text-center">
+            <button type="button" (click)="onSearch()" class="btn btn-light text-danger w-100">SEARCH BUSES</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Buses List -->
+  <section id="buses-list" class="my-4">
+    <h2>Available Buses</h2>
+
+    @if (newbusList.length === 0) {
+    <p class="text-center text-danger">No buses available for the selected route.</p>
+    }
+    @for (items of newbusList; track $index) {
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-3">
+          <div class="row g-0">
+            <div class="col-md-3 d-flex flex-column justify-content-center align-items-center">
+              <h5 class="card-title">{{items.busName}}</h5>
+              <p class="card-text">A/C Sleeper (2+1)</p>
+            </div>
+
+            <div class="col-md-9">
+              <div class="card-body row">
+                <div class="col-md-2">
+                  <p class="card-text">{{items.departureTime}}</p>
+                  <p class="card-text">departureTime</p>
+                </div>
+
+                <div class="col-md-2">
+                  <p class="card-text"><strong>13h 55m</strong></p>
+                  <p class="card-text">Duration</p>
+                </div>
+
+                <div class="col-md-2">
+                  <p class="card-text"><strong>{{items.arrivalTime}}</strong></p>
+                  <p class="card-text">Arrival</p>
+                  <p class="text-danger">18-Aug</p>
+                </div>
+
+                <div class="col-md-2">
+                  <p class="card-text"><strong>{{items.rating}}</strong> ⭐</p>
+                  <p class="card-text">567 Ratings</p>
+                </div>
+
+                <div class="col-md-2">
+                  <p class="card-text"><strong>{{items.price}} INR</strong></p>
+                  <p class="card-text"><b>{{items.availableSeat}}</b> Seats are available out of
+                    <b>{{items.totalSeats}}</b>
+                  </p>
+                </div>
+
+                <div class="col-md-2 text-end">
+                  <button class="btn btn-danger" (click)="goToBooking2(busList)">Book Seat</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </section>
+  <div class="container special-offer-wrapper " style="flex-flow: wrap; place-content: center; align-items: normal;">
+    <div class="container  " style="flex-flow: row; place-content: flex-start space-between; align-items: center;"
+      id="offers-image">
+      <div class="container  "
+        style="flex-flow: wrap; place-content: flex-start center; align-items: normal; position: relative;">
+        <div class="container special-offer-header fixed"
+          style="flex-flow: wrap; place-content: flex-start space-between; align-items: center; margin-bottom: 0.8rem;">
+          <div class=" col">
+            <h2 class="offer h4"> Bus Booking Discount Offers </h2>
+          </div>
+          <div class=" col auto"><a class="btn  outlined primary md inactive link" id="view-offers-link"
+              href="/bus-ticket-offers">View All</a></div>
+        </div>
+        <div class="row " style="flex-direction: row; justify-content: center; align-items: center;"><button
+            class="btn btn-slide-nav outlined primary md inactive button" aria-label="offers-slide-left"
+            style="position: absolute; left: calc(-640px + 50vw); z-index: 1;"><svg xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor" viewBox="0 0 320 512" width="1rem" height="1rem">
+              <path
+                d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z">
+              </path>
+            </svg></button>
+          <div class="container  fixed" style="flex-flow: wrap; place-content: flex-start; align-items: normal;">
+            <div class="scrollable-container offer-scrollable-container  primary hide-scrollbar"
+              style="flex-flow: row; place-content: flex-start; align-items: center; width: 100%; scroll-behavior: smooth; overflow-x: scroll;">
+              <img src="https://static.abhibus.com/offerbanners/Nov2024/16/1731757944-Wedding720x360.webp"
+                alt="Get Rs.500 Off on 1st Booking" width="340" height="170" title="Get Rs.500 Off on 1st Booking"
+                data-page-uri="weddings-offer" data-position="1">
+
+              <img src="https://static.abhibus.com/offerbanners/Feb2025/24/1740398894-720x360.webp"
+                alt="Flat Rs.200 Off with ICICI Bank Credit Card" width="340" height="170"
+                title="Flat Rs.200 Off with ICICI Bank Credit Card"
+                data-page-uri="icici-bank-creditcard-all-bus-booking-offers" data-position="2">
+                <img
+                src="https://static.abhibus.com/offerbanners/Jun2024/04/1717449451-apsrtc-bus-offer.webp"
+                alt="Save upto Rs.300 on APSRTC bookings" width="340" height="170"
+                title="Save upto Rs.300 on APSRTC bookings" data-page-uri="apsrtc-bus-booking-offers"
+                data-position="3">
+                <img src="https://static.abhibus.com/offerbanners/Oct2024/07/1728295367-720x360.webp"
+                alt="Save upto Rs.300 on TGSRTC bookings" width="340" height="170"
+                title="Save upto Rs.300 on TGSRTC bookings" data-page-uri="tgsrtc-bus-booking-offers"
+                data-position="4">
+                <img src="https://static.abhibus.com/offerbanners/Dec2024/30/1735561676-720x360.webp"
+                alt="Save upto Rs.300 on KSRTC bookings" width="340" height="170"
+                title="Save upto Rs.300 on KSRTC bookings" data-page-uri="ksrtc-bus-booking-offers"
+                data-position="5">
+                <img src="https://static.abhibus.com/offerbanners/Jul2024/03/1719986415-720x360.webp"
+                alt="Flat Rs.300 off with RBL Bank Credit Card" width="340" height="170"
+                title="Flat Rs.300 off with RBL Bank Credit Card" data-page-uri="rbl-creditcard-all-bus-booking-offers"
+                data-position="6">
+                
+            </div>
+          </div><button class="btn btn-slide-nav outlined primary md inactive button" aria-label="offers-slide-right"
+            style="position: absolute; right: calc(-640px + 50vw); z-index: 1;"><svg xmlns="http://www.w3.org/2000/svg"
+              width="1rem" height="1rem" viewBox="0 0 8.414 14.828">
+              <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m1.414 1.414 6 6-6 6" data-name="Path 2150"></path>
+            </svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

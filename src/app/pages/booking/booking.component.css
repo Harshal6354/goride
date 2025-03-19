@@ -1,0 +1,60 @@
+.container {
+    max-width: 1200px;
+}
+/* Seat Button Styles */
+.seat {
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    margin: 5px;
+    font-weight: bold;
+    transition: all 0.3s;
+    
+    &:hover{
+        color: red;
+        background: rgb(114, 199, 114);
+}
+
+
+.seat.btn-primary {
+    background-color: #007bff;
+    color: white;
+    
+    }
+    
+}
+
+.seat.btn-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.seat:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+/* Card Styles for Booked Tickets */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+.card:hover {
+    transform: translateY(-5px);
+}
+.card-body {
+    padding: 15px;
+}
+
+/* Button Styles */
+.btn-warning {
+    background-color: #ffc107;
+    border: none;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+} 

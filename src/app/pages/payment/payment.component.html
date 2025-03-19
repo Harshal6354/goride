@@ -1,0 +1,15 @@
+<div class="payment-container">
+    <h2>Complete Your Payment</h2>
+  
+    <div id="card-container"></div>
+  
+    <button 
+      id="card-button" 
+      [disabled]="isPaymentLoading" 
+      (click)="handlePayment()" 
+      class="pay-button">
+      <span *ngIf="isPaymentLoading">Processing...</span>
+      <span *ngIf="!isPaymentLoading">Pay Now $100</span>
+    </button>
+  </div>
+  

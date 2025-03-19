@@ -1,0 +1,28 @@
+<div class="container">
+    <h1 class="title">Booked Ticket Details</h1>
+<div *ngIf="bookedTickets.length > 0; else noData">
+  <table>
+    <thead>
+      <tr>
+        <th>Seat No.</th>
+        <th>Passenger Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ticket of bookedTickets">
+        <td>{{ ticket.passenger?.seat }}</td>
+        <td>{{ ticket.passenger?.name }}</td>
+        <td>{{ ticket.passenger?.age }}</td>
+        <td>{{ ticket.passenger?.gender }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noData>
+  <p>No booked tickets found.</p>
+</ng-template>
+
+</div>
