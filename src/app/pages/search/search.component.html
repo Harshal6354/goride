@@ -1,7 +1,8 @@
 <!-- Search Form -->
 <div class="container">
   <header class="my-4">
-    <h1 class="text-center">Bus Booking System</h1>
+    <h1 class="text-center" >Bus Booking System</h1>
+   
   </header>
   <section>
     <div class="container mt-5 d-flex justify-content-center">
@@ -18,11 +19,9 @@
               </select>
             </div>
           </div>
-
           <div class="col-md-1 text-center d-flex align-items-center justify-content-center arrow">
             <i class="fa-solid fa-right-left"></i>
           </div>
-
           <div class="col-md-3 d-flex align-items-center">
             <div class="input-group">
               <span class="input-group-text"><i class="bi bi-bus-front"></i></span>
@@ -34,7 +33,6 @@
               </select>
             </div>
           </div>
-
           <div class="col-md-3 d-flex align-items-center">
             <div class="input-group">
               <span class="input-group-text"><i class="bi bi-calendar"></i></span>
@@ -42,7 +40,6 @@
                 placeholder="Date" value="17 Aug 2024">
             </div>
           </div>
-
           <div class="col-md-2 text-center">
             <button type="button" (click)="onSearch()" class="btn btn-light text-danger w-100">SEARCH BUSES</button>
           </div>
@@ -50,7 +47,6 @@
       </form>
     </div>
   </section>
-
   <!-- Buses List -->
   <section id="buses-list" class="my-4">
     <h2>Available Buses</h2>
@@ -97,7 +93,6 @@
                     <b>{{items.totalSeats}}</b>
                   </p>
                 </div>
-
                 <div class="col-md-2 text-end">
                   <button class="btn btn-danger" (click)="goToBooking2(busList)">Book Seat</button>
                 </div>
@@ -109,6 +104,49 @@
     </div>
     }
   </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
   <div class="container special-offer-wrapper " style="flex-flow: wrap; place-content: center; align-items: normal;">
     <div class="container  " style="flex-flow: row; place-content: flex-start space-between; align-items: center;"
       id="offers-image">

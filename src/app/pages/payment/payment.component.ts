@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-payment',
@@ -15,6 +16,7 @@ export class PaymentComponent implements OnInit {
   card: any;
   isPaymentLoading = false;
   errorMessage = '';
+   constructor(private toaster:ToastrService){}
 
   async ngOnInit() {
     // Wait for Square SDK to load
@@ -36,6 +38,7 @@ export class PaymentComponent implements OnInit {
       const result = await this.card.tokenize();
       if (result.status === 'OK') {
         alert(`Payment Successful!\nToken: ${result.token}`);
+        this.toaster.success("Payment Successful",`Token: ${result.token}`,{positionClass:'toast-top-left'})
         this.router.navigate(['Ticket'])
        
       } else {

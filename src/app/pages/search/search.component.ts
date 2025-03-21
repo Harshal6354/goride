@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule, DatePipe } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 interface Bus {
   scheduleID: number;
   busName: string;
@@ -23,6 +24,7 @@ interface Bus {
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
+  
   router=inject(Router)
   loctions$: Observable<any> = new Observable<any[]>;
   busList: any[] = [
@@ -163,6 +165,6 @@ export class SearchComponent {
       availableSeats: busList.availableSeat 
     }});
   }
-  
+    
 
 }

@@ -1,6 +1,7 @@
 .container {
     max-width: 1200px;
 }
+
 /* Seat Button Styles */
 .seat {
     width: 50px;
@@ -9,30 +10,38 @@
     margin: 5px;
     font-weight: bold;
     transition: all 0.3s;
-    
-    &:hover{
-        color: red;
-        background: rgb(114, 199, 114);
 }
 
+.seat:hover {
+    color: red;
+    background: rgb(114, 199, 114);
+}
 
+/* Available Seat */
 .seat.btn-primary {
-    background-color: #007bff;
+    background-color: #1a0ef5;
     color: white;
-    
-    }
-    
 }
 
+/* Booked Seat */
 .seat.btn-success {
     background-color: #28a745;
     color: white;
 }
 
+/* Selected Seat (Yellow) */
+.seat.btn-warning {
+    background-color: #c6f01a;
+    color: black;
+    font-weight: bold;
+}
+
+/* Disabled (Already Booked) */
 .seat:disabled {
     opacity: 0.6;
     cursor: not-allowed;
 }
+
 /* Card Styles for Booked Tickets */
 .card {
     border: 1px solid #ddd;
@@ -49,12 +58,12 @@
 
 /* Button Styles */
 .btn-warning {
-    background-color: #ffc107;
+    background-color: #d607ff;
     border: none;
-    color: white;
+    color: black;
     transition: background-color 0.3s;
 }
 
 .btn-warning:hover {
-    background-color: #e0a800;
-} 
+    background-color: #e00000;
+}

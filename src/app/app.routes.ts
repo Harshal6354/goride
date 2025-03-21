@@ -5,6 +5,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { auth1Guard } from './services/auth1.guard';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { BookdetailsComponent } from './pages/bookdetails/bookdetails.component';
+import { CarsoComponent } from './carso/carso.component';
 
 export const routes: Routes = [
     {
@@ -39,6 +40,10 @@ export const routes: Routes = [
     {
           path:'Ticket',
           component:BookdetailsComponent
+    },
+    {
+            path:'cars',
+            component:CarsoComponent
     },
 
     // Catch-all route for unknown paths
