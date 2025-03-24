@@ -60,20 +60,16 @@ export class BookingComponent implements OnInit {
       }
     }
   }
-  
   // Function to get the seat's class dynamically
   getSeatClass(seat: any) {
     if (seat.isBooked) {
-      return 'btn-success';  // Green for booked seats
+      return 'btn-success'; 
     } else if (this.selectedSeats.some(s => s.seat === seat.seat)) {
-      return 'btn-warning';  // Yellow for selected seats
+      return 'btn-warning';  
     } else {
-      return 'btn-primary';   // Default color
+      return 'btn-primary';   
     }
   }
-  
-  
-
   // Remove selected seat before booking
   removeSelectedSeat(seat: any) {
     this.selectedSeats = this.selectedSeats.filter(s => s.seat !== seat.seat);
@@ -93,9 +89,6 @@ export class BookingComponent implements OnInit {
   }
   
   // Cancel a booked seat
- 
- 
-  
   cancelBooking(seat: any) {
     seat.isBooked = false;
     seat.passenger = null;
@@ -106,15 +99,12 @@ export class BookingComponent implements OnInit {
   hasBookedSeats(): boolean {
     return this.seatArray.some(seat => seat.isBooked);
   }
-  
-  
   // Go to payment page with selected seat data
   goToPayment(seat: any) {
     if (seat.isBooked && seat.passenger) {
       this.router.navigate(['/payment'], { queryParams: { seats: JSON.stringify([seat]) } });
     }
   }
-
   // Group payment for multiple seats
   payForAll() {
     const bookedSeats = this.seatArray.filter(seat => seat.isBooked);

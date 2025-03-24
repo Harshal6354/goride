@@ -52,7 +52,7 @@
     <h2>Available Buses</h2>
 
     @if (newbusList.length === 0) {
-    <p class="text-center text-danger">No buses available for the selected route.</p>
+    <p class="text-center text-bg-success">Select the city for Buses.</p>
     }
     @for (items of newbusList; track $index) {
     <div class="row">
@@ -106,106 +106,32 @@
   </section>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-  <div class="container special-offer-wrapper " style="flex-flow: wrap; place-content: center; align-items: normal;">
-    <div class="container  " style="flex-flow: row; place-content: flex-start space-between; align-items: center;"
-      id="offers-image">
-      <div class="container  "
-        style="flex-flow: wrap; place-content: flex-start center; align-items: normal; position: relative;">
-        <div class="container special-offer-header fixed"
-          style="flex-flow: wrap; place-content: flex-start space-between; align-items: center; margin-bottom: 0.8rem;">
-          <div class=" col">
-            <h2 class="offer h4"> Bus Booking Discount Offers </h2>
-          </div>
-          <div class=" col auto"><a class="btn  outlined primary md inactive link" id="view-offers-link"
-              href="/bus-ticket-offers">View All</a></div>
+ 
+ 
+ <div class="row" style="display: flex; justify-content: center; align-items: center;">
+    <div class="container fixed" style="display: flex; flex-wrap: nowrap; justify-content: flex-start;">
+        <div class="scrollable-container offer-scrollable-container primary hide-scrollbar" 
+             style="display: flex; flex-flow: row nowrap; align-items: center; width: 100%; scroll-behavior: smooth; overflow-x: auto; gap: 10px;">
+             
+            <img src="https://static.abhibus.com/offerbanners/Nov2024/16/1731757944-Wedding720x360.webp" alt="Get Rs.500 Off on 1st Booking" width="340" height="170">
+            <img src="https://static.abhibus.com/offerbanners/Feb2025/24/1740398894-720x360.webp" alt="Flat Rs.200 Off with ICICI Bank Credit Card" width="340" height="170">
+            <img src="https://static.abhibus.com/offerbanners/Jun2024/04/1717449451-apsrtc-bus-offer.webp" alt="Save upto Rs.300 on APSRTC bookings" width="340" height="170">
+            <img src="https://static.abhibus.com/offerbanners/Oct2024/07/1728295367-720x360.webp" alt="Save upto Rs.300 on TGSRTC bookings" width="340" height="170">
+            <img src="https://static.abhibus.com/offerbanners/Dec2024/30/1735561676-720x360.webp" alt="Save upto Rs.300 on KSRTC bookings" width="340" height="170">
+            <img src="https://static.abhibus.com/offerbanners/Jul2024/03/1719986415-720x360.webp" alt="Flat Rs.300 off with RBL Bank Credit Card" width="340" height="170">
+            <img src="https://static.abhibus.com/offerbanners/Aug2024/02/1722592574-720x360.webp" alt="Flat Rs.150 off with AU Bank Credit Card" width="340" height="170">
+            <img src="https://static.abhibus.com/busgallery/offerbanners/Nov2023/24/1700820925-720x360-ixigo-au.png" alt="Flat 10% off via ixigo - AU Bank Credit Card" width="340" height="170">
+            <img src="https://static.abhibus.com/offerbanners/Jun2024/04/1717448842-abhiparty-bus-offer.webp" alt="Travel Party: Rs.250 off on group bookings" width="340" height="170">
         </div>
-        <div class="row " style="flex-direction: row; justify-content: center; align-items: center;"><button
-            class="btn btn-slide-nav outlined primary md inactive button" aria-label="offers-slide-left"
-            style="position: absolute; left: calc(-640px + 50vw); z-index: 1;"><svg xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor" viewBox="0 0 320 512" width="1rem" height="1rem">
-              <path
-                d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z">
-              </path>
-            </svg></button>
-          <div class="container  fixed" style="flex-flow: wrap; place-content: flex-start; align-items: normal;">
-            <div class="scrollable-container offer-scrollable-container  primary hide-scrollbar"
-              style="flex-flow: row; place-content: flex-start; align-items: center; width: 100%; scroll-behavior: smooth; overflow-x: scroll;">
-              <img src="https://static.abhibus.com/offerbanners/Nov2024/16/1731757944-Wedding720x360.webp"
-                alt="Get Rs.500 Off on 1st Booking" width="340" height="170" title="Get Rs.500 Off on 1st Booking"
-                data-page-uri="weddings-offer" data-position="1">
-
-              <img src="https://static.abhibus.com/offerbanners/Feb2025/24/1740398894-720x360.webp"
-                alt="Flat Rs.200 Off with ICICI Bank Credit Card" width="340" height="170"
-                title="Flat Rs.200 Off with ICICI Bank Credit Card"
-                data-page-uri="icici-bank-creditcard-all-bus-booking-offers" data-position="2">
-                <img
-                src="https://static.abhibus.com/offerbanners/Jun2024/04/1717449451-apsrtc-bus-offer.webp"
-                alt="Save upto Rs.300 on APSRTC bookings" width="340" height="170"
-                title="Save upto Rs.300 on APSRTC bookings" data-page-uri="apsrtc-bus-booking-offers"
-                data-position="3">
-                <img src="https://static.abhibus.com/offerbanners/Oct2024/07/1728295367-720x360.webp"
-                alt="Save upto Rs.300 on TGSRTC bookings" width="340" height="170"
-                title="Save upto Rs.300 on TGSRTC bookings" data-page-uri="tgsrtc-bus-booking-offers"
-                data-position="4">
-                <img src="https://static.abhibus.com/offerbanners/Dec2024/30/1735561676-720x360.webp"
-                alt="Save upto Rs.300 on KSRTC bookings" width="340" height="170"
-                title="Save upto Rs.300 on KSRTC bookings" data-page-uri="ksrtc-bus-booking-offers"
-                data-position="5">
-                <img src="https://static.abhibus.com/offerbanners/Jul2024/03/1719986415-720x360.webp"
-                alt="Flat Rs.300 off with RBL Bank Credit Card" width="340" height="170"
-                title="Flat Rs.300 off with RBL Bank Credit Card" data-page-uri="rbl-creditcard-all-bus-booking-offers"
-                data-position="6">
-                
-            </div>
-          </div><button class="btn btn-slide-nav outlined primary md inactive button" aria-label="offers-slide-right"
-            style="position: absolute; right: calc(-640px + 50vw); z-index: 1;"><svg xmlns="http://www.w3.org/2000/svg"
-              width="1rem" height="1rem" viewBox="0 0 8.414 14.828">
-              <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="m1.414 1.414 6 6-6 6" data-name="Path 2150"></path>
-            </svg></button>
-        </div>
-      </div>
     </div>
-  </div>
+
+    <!-- Slide Navigation Button -->
+    <button class="btn btn-slide-nav outlined primary md inactive button" aria-label="offers-slide-right"
+            style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); z-index: 1;">
+       
+    </button>
+</div><br>
+<h1>Why Choose GoRide for Bus Ticket Booking ?</h1>
+<p>AbhiBus is India’s fastest growing online ticket booking platform. GoRide is the official ticketing partner of several State Road Transport Corporation (SRTC) operators and over 4000+ private bus partners covering more than 3,50,000 bus routes</p>
+
 </div>

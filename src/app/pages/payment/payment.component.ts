@@ -37,8 +37,8 @@ export class PaymentComponent implements OnInit {
     try {
       const result = await this.card.tokenize();
       if (result.status === 'OK') {
-        alert(`Payment Successful!\nToken: ${result.token}`);
-        this.toaster.success("Payment Successful",`Token: ${result.token}`,{positionClass:'toast-top-left'})
+       
+        this.toaster.success("Payment Successful",`Token: ${result.token}`,{positionClass:'toast-top-center',titleClass:'mytoast'})
         this.router.navigate(['Ticket'])
        
       } else {
