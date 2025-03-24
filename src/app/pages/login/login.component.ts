@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MasterService } from '../../services/master.service';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { user } from '../../core/model/class/user.model';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -16,19 +17,11 @@ export class LoginComponent {
   constructor(private toast:ToastrService){}
   router = inject(Router);
   masterSrv = inject(MasterService);
-   loggedUserData: any;
-   registerObj: any ={
-    "userId": 0,
-    "userName": "harshal",
-    "emailId": "",
-    "fullName": "",
-    "role": "",
-    "createDate": new Date(),
-    "password": "1234",
-    "projectName": "",
-    "refreshToken": "",
-    "refreshTokenExpiryTime": new Date()
-  };
+  
+   registerObj:user=new user({
+     userName: "harshal",
+    password: "1234"
+});
   goToHome() {  
     if(this.registerObj.userName==="harshal" && this.registerObj.password=="1234"){
       localStorage.setItem('auth1', 'true');

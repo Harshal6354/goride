@@ -10,7 +10,7 @@
                         <label for="UserName">
                                  UserName
                                  </label> 
-                                 <input type="text" class="form-control" name="UserName" #fname="ngModel" [(ngModel)]="registerObj.UserName" placeholder="UserName" required minlength="3" />
+                                 <input type="text" class="form-control" name="UserName" #fname="ngModel" [(ngModel)]="registerObj.userName" placeholder="UserName" required minlength="3" />
                                   <div class="text-danger">
                                     @if(fname.touched && fname.errors?.['required']){
                                            <span>This is required</span>
