@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { Seat } from '../../core/model/interface/seat.model';
 
 @Component({
   selector: 'app-booking',
@@ -12,70 +13,59 @@ import { Router } from '@angular/router';
 })
 export class BookingComponent implements OnInit {
   router = inject(Router);
-  selectedSeats: any[] = [];
+  selectedSeats: Seat[] = []; // Stores currently selected seats for booking
 
-  seatArray: any[] = [
-    { seat: '1', isBooked: false, passenger: null, isSelected: false },
-    { seat: '2', isBooked: false, passenger: null, isSelected: false },
-    { seat: '3', isBooked: false, passenger: null, isSelected: false },
-    { seat: '4', isBooked: false, passenger: null, isSelected: false },
-    { seat: '5', isBooked: false, passenger: null, isSelected: false },
-    { seat: '6', isBooked: false, passenger: null, isSelected: false },
-    { seat: '7', isBooked: false, passenger: null, isSelected: false },
-    { seat: '8', isBooked: false, passenger: null, isSelected: false },
-    { seat: '9', isBooked: false, passenger: null, isSelected: false },
-    { seat: '10', isBooked: false, passenger: null, isSelected: false },
-    { seat: '11', isBooked: false, passenger: null, isSelected: false },
-    { seat: '12', isBooked: false, passenger: null, isSelected: false },
-    { seat: '13', isBooked: false, passenger: null, isSelected: false },
-    { seat: '14', isBooked: false, passenger: null, isSelected: false },
-    { seat: '15', isBooked: false, passenger: null, isSelected: false },
-    { seat: '16', isBooked: false, passenger: null, isSelected: false },
-    { seat: '17', isBooked: false, passenger: null, isSelected: false },
-    { seat: '18', isBooked: false, passenger: null, isSelected: false },
-    { seat: '19', isBooked: false, passenger: null, isSelected: false },
-    { seat: '20', isBooked: false, passenger: null, isSelected: false },
-    { seat: '21', isBooked: false, passenger: null, isSelected: false },
-  ];
+  // Seat data - default values
+  seatArray: Seat[] = Array.from({ length: 21 }, (_, i) => ({
+    seat: (i + 1).toString(),
+    isBooked: false,
+    passenger: null,
+    isSelected: false
+  }));
 
   ngOnInit() {
+    // Load saved seat data from local storage if available
     const savedSeats = localStorage.getItem('seatArray');
     if (savedSeats) {
       this.seatArray = JSON.parse(savedSeats);
     }
   }
-  seatcolor:string="yellow"
 
-  // Select multiple seats
-  selectSeat(seat: any) {
+  // Function to select/unselect seats
+  selectSeat(seat: Seat) {
     if (!seat.isBooked) {
       const index = this.selectedSeats.findIndex(s => s.seat === seat.seat);
   
       if (index === -1) {
-        // Add to selectedSeats if not already selected
-        this.selectedSeats.push({ ...seat, passenger: { name: '', age: '', gender: '' } });
+        // Ensure passenger is always initialized
+        this.selectedSeats.push({ 
+          ...seat, 
+          passenger: seat.passenger || { name: '', age: '', gender: '' } 
+        });
       } else {
-        // Remove from selectedSeats if clicked again
         this.selectedSeats.splice(index, 1);
       }
     }
   }
-  // Function to get the seat's class dynamically
-  getSeatClass(seat: any) {
+  
+
+  // Function to dynamically assign seat colors based on status
+  getSeatClass(seat: Seat) {
     if (seat.isBooked) {
-      return 'btn-success'; 
+      return 'btn-success';  // Green for booked seats
     } else if (this.selectedSeats.some(s => s.seat === seat.seat)) {
-      return 'btn-warning';  
+      return 'btn-warning';  // Yellow for selected seats
     } else {
-      return 'btn-primary';   
+      return 'btn-primary';   // Blue for available seats
     }
   }
-  // Remove selected seat before booking
-  removeSelectedSeat(seat: any) {
+
+  // Remove a selected seat before confirming booking
+  removeSelectedSeat(seat: Seat) {
     this.selectedSeats = this.selectedSeats.filter(s => s.seat !== seat.seat);
   }
 
-  // Submit multiple passengers
+  // Submit selected seats and store booking details
   submitPassengers() {
     this.selectedSeats.forEach(selectedSeat => {
       const seatIndex = this.seatArray.findIndex(s => s.seat === selectedSeat.seat);
@@ -83,29 +73,31 @@ export class BookingComponent implements OnInit {
         this.seatArray[seatIndex] = { ...selectedSeat, isBooked: true }; // Mark as booked
       }
     });
-  
+
     localStorage.setItem('seatArray', JSON.stringify(this.seatArray));
-    this.selectedSeats = []; // Clear selectedSeats after booking
+    this.selectedSeats = []; // Clear selected seats after booking
   }
-  
+
   // Cancel a booked seat
-  cancelBooking(seat: any) {
+  cancelBooking(seat: Seat) {
     seat.isBooked = false;
     seat.passenger = null;
     localStorage.setItem('seatArray', JSON.stringify(this.seatArray));
   }
- 
+
 
   hasBookedSeats(): boolean {
     return this.seatArray.some(seat => seat.isBooked);
   }
-  // Go to payment page with selected seat data
-  goToPayment(seat: any) {
+
+  // Navigate to payment page for a single seat
+  goToPayment(seat: Seat) {
     if (seat.isBooked && seat.passenger) {
       this.router.navigate(['/payment'], { queryParams: { seats: JSON.stringify([seat]) } });
     }
   }
-  // Group payment for multiple seats
+
+  // Navigate to payment page for all booked seats
   payForAll() {
     const bookedSeats = this.seatArray.filter(seat => seat.isBooked);
     if (bookedSeats.length > 0) {

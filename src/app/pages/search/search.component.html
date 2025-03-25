@@ -36,7 +36,7 @@
           <div class="col-md-3 d-flex align-items-center">
             <div class="input-group">
               <span class="input-group-text"><i class="bi bi-calendar"></i></span>
-              <input type="date" class="form-control" name="travelDate" [(ngModel)]="searchObj.travelDate"
+              <input type="date" class="form-control" name="travelDate" [(ngModel)]="searchObj.departureTime"
                 placeholder="Date" value="17 Aug 2024">
             </div>
           </div>
@@ -94,7 +94,7 @@
                   </p>
                 </div>
                 <div class="col-md-2 text-end">
-                  <button class="btn btn-danger" (click)="goToBooking2(busList)">Book Seat</button>
+                  <button class="btn btn-danger" (click)="goToBooking2(items)">Book Seat</button>
                 </div>
               </div>
             </div>

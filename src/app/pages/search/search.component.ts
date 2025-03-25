@@ -4,18 +4,8 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-interface Bus {
-  scheduleID: number;
-  busName: string;
-  fromLocation: string;
-  toLocation: string;
-  departureTime: string;
-  arrivalTime: string;
-  price: number;
-  rating: number;
-  availableSeat: number;
-  totalSeats: number;
-}
+import { Bus } from '../../core/model/interface/bus.model';
+
 @Component({
   selector: 'app-search',
   standalone: true,
@@ -26,8 +16,7 @@ interface Bus {
 export class SearchComponent {
   
   router=inject(Router)
-  loctions$: Observable<any> = new Observable<any[]>;
-  busList: any[] = [
+  busList: Bus[] = [
     {
       "price": 1000,
       "totalSeats": 35,
@@ -137,13 +126,13 @@ export class SearchComponent {
       "rating": 4.0
     },
   ]
-  newbusList: any[] = [];
-
-  searchObj: any = {
+  newbusList: Bus[] = [];
+  searchObj:Partial<Bus>={
     fromLocation: '',
-    toLocation: '',
-    travelDate: ''
-  };
+    toLocation: ''
+  }
+
+
   
   onSearch() {
     const { fromLocation, toLocation } = this.searchObj;
@@ -158,7 +147,7 @@ export class SearchComponent {
 
     console.log('Filtered Bus List:', this.newbusList); // Debugging line
   }
-  goToBooking2(busList:any) {
+  goToBooking2(busList:Bus) {
     
     this.router.navigate(['/booking'], { queryParams: { 
       totalSeats: busList.totalSeats, 

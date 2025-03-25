@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, NO_ERRORS_SCHEMA, OnInit } from '@angular/core';
+import { Seat } from '../../core/model/interface/seat.model';
 
 @Component({
   selector: 'app-bookdetails',
@@ -11,13 +12,13 @@ import { Component, NO_ERRORS_SCHEMA, OnInit } from '@angular/core';
 })
 export class BookdetailsComponent implements OnInit {  // ✅ Implements OnInit correctly
 
-  bookedTickets: any[] = [];
+  bookedTickets:Seat [] = [];
 
   ngOnInit(): void {  // ✅ Add this method to fix the error
     const savedSeats = localStorage.getItem('seatArray');
     if (savedSeats) {
       const allSeats = JSON.parse(savedSeats);
-      this.bookedTickets = allSeats.filter((seat: any) => seat.isBooked);
+      this.bookedTickets = allSeats.filter((seat: Seat) => seat.isBooked);
       console.log('Booked Tickets:', this.bookedTickets); 
     }
   }

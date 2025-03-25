@@ -34,10 +34,10 @@
               <tbody>
                 <tr *ngFor="let seat of selectedSeats">
                   <td>{{ seat.seat }}</td>
-                  <td><input type="text" class="form-control" [(ngModel)]="seat.passenger.name" name="name{{seat.seat}}" required></td>
-                  <td><input type="number" class="form-control" [(ngModel)]="seat.passenger.age" name="age{{seat.seat}}" required></td>
+                  <td><input type="text" class="form-control" [(ngModel)]="seat.passenger!.name" name="name{{seat.seat}}" required></td>
+                  <td><input type="number" class="form-control" [(ngModel)]="seat.passenger!.age" name="age{{seat.seat}}" required></td>
                   <td>
-                    <select class="form-control" [(ngModel)]="seat.passenger.gender" name="gender{{seat.seat}}" required>
+                    <select class="form-control" [(ngModel)]="seat.passenger!.gender" name="gender{{seat.seat}}" required>
                       <option value="">Select</option>
                       <option value="Male">Male</option>
                       <option value="Female">Female</option>
@@ -78,9 +78,9 @@
                   <tr *ngFor="let seat of seatArray">
                     <ng-container *ngIf="seat.isBooked">
                       <td>{{ seat.seat }}</td>
-                      <td>{{ seat.passenger.name }}</td>
-                      <td>{{ seat.passenger.age }}</td>
-                      <td>{{ seat.passenger.gender }}</td>
+                      <td>{{ seat.passenger?.name }}</td>
+                      <td>{{ seat.passenger?.age}}</td>
+                      <td>{{ seat.passenger?.gender }}</td>
                      
                       <td>
                         <button class="btn btn-success btn-sm me-2" (click)="goToPayment(seat)">Pay Now</button>

@@ -1,48 +1,70 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Payments, Card } from '@square/web-sdk';
 
 @Component({
   selector: 'app-payment',
-  standalone:true,
-  imports:[CommonModule,FormsModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
-  router=inject(Router)
-  card: any;
+  router = inject(Router);
+  card: Card | null = null;  // ✅ Use `Card` instead of `PaymentMethod`
   isPaymentLoading = false;
   errorMessage = '';
-   constructor(private toaster:ToastrService){}
+
+  constructor(private toaster: ToastrService) {}
 
   async ngOnInit() {
-    // Wait for Square SDK to load
+    // Ensure Square SDK is loaded
     if (!(window as any).Square) {
       this.errorMessage = 'Square Web SDK failed to load.';
       return;
     }
 
-    const payments = (window as any).Square.payments('sandbox-sq0idb-AHphDBKGrf8boGXMhm0FDQ', 'sandbox');
-    this.card = await payments.card();
-    await this.card.attach('#card-container');
+    try {
+      // Initialize Square Payments
+      const payments: Payments = (window as any).Square.payments(
+        'sandbox-sq0idb-AHphDBKGrf8boGXMhm0FDQ', 
+        'sandbox'
+      );
+
+      // Create a card payment instance
+      this.card = await payments.card();  
+      await this.card.attach('#card-container');
+    } catch (error) {
+      this.errorMessage = 'Failed to initialize payment.';
+    }
   }
 
   async handlePayment() {
+    if (!this.card) {
+      this.errorMessage = 'Payment method is not available.';
+      return;
+    }
+
     this.isPaymentLoading = true;
     this.errorMessage = '';
 
     try {
-      const result = await this.card.tokenize();
+      const result = await this.card.tokenize();  // ✅ Now tokenize() exists
+
       if (result.status === 'OK') {
-       
-        this.toaster.success("Payment Successful",`Token: ${result.token}`,{positionClass:'toast-top-center',titleClass:'mytoast'})
-        this.router.navigate(['Ticket'])
-       
+        this.toaster.success(
+          'Payment Successful',
+          `Token: ${result.token}`,
+          { positionClass: 'toast-top-center', titleClass: 'mytoast' }
+        );
+        this.router.navigate(['Ticket']);
+      } else if (result.errors && result.errors.length > 0) {
+        this.errorMessage = result.errors[0]?.message || 'Payment failed.';
       } else {
-        this.errorMessage = result.errors[0].detail;
+        this.errorMessage = 'Payment failed.';
       }
     } catch (error) {
       this.errorMessage = 'Payment failed. Please try again.';
