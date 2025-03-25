@@ -5,6 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { Bus } from '../../core/model/interface/bus.model';
+import { MasterService } from '../../services/master.service';
 
 @Component({
   selector: 'app-search',
@@ -16,6 +17,7 @@ import { Bus } from '../../core/model/interface/bus.model';
 export class SearchComponent {
   
   router=inject(Router)
+  constructor(private service1:MasterService){}
   busList: Bus[] = [
     {
       "price": 1000,

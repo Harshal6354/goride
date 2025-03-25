@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Seat } from '../../core/model/interface/seat.model';
+import { Service1Service } from '../../services/service1.service';
 
 @Component({
   selector: 'app-booking',
@@ -13,6 +14,7 @@ import { Seat } from '../../core/model/interface/seat.model';
 })
 export class BookingComponent implements OnInit {
   router = inject(Router);
+  service1=inject(Service1Service)
   selectedSeats: Seat[] = []; // Stores currently selected seats for booking
 
   // Seat data - default values
@@ -91,9 +93,14 @@ export class BookingComponent implements OnInit {
   }
 
   // Navigate to payment page for a single seat
-  goToPayment(seat: Seat) {
+  // goToPayment(seat: Seat) {
+  //   if (seat.isBooked && seat.passenger) {
+  //     this.router.navigate(['/payment'], { queryParams: { seats: JSON.stringify([seat]) } });
+  //   }
+  // }
+   goToPayment(seat: Seat) {
     if (seat.isBooked && seat.passenger) {
-      this.router.navigate(['/payment'], { queryParams: { seats: JSON.stringify([seat]) } });
+      this.service1.navigateToPayment([seat]);
     }
   }
 
@@ -102,7 +109,8 @@ export class BookingComponent implements OnInit {
     const bookedSeats = this.seatArray.filter(seat => seat.isBooked);
     if (bookedSeats.length > 0) {
       localStorage.setItem('selectedSeats', JSON.stringify(bookedSeats));
-      this.router.navigate(['/payment'], { queryParams: { seats: JSON.stringify(bookedSeats) } });
+       this.service1.navigateToPayment(bookedSeats);
+      // this.router.navigate(['/payment'], { queryParams: { seats: JSON.stringify(bookedSeats) } });
     } else {
       alert('No booked seats available for payment.');
     }
