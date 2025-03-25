@@ -6,8 +6,18 @@
       [disabled]="isPaymentLoading" 
       (click)="handlePayment()" 
       class="pay-button">
-      <span *ngIf="isPaymentLoading">Processing...</span>
+      <ng-template>
+        <div class="spinner-border text-primary"></div>
+      </ng-template>
+      <span *ngIf="isPaymentLoading" >Processing...</span>
+      
+      <ng-container>
+        <div *ngIf="isPaymentLoading">
+          <div class="spinner-border text-primary"></div>
+        </div>
+        
       <span *ngIf="!isPaymentLoading" >Pay Now $100</span>
+    </ng-container>
     </button>
   </div>
   

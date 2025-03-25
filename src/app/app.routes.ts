@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { SearchComponent } from './pages/search/search.component';
 import { BookingComponent } from './pages/booking/booking.component';
 import { LoginComponent } from './pages/login/login.component';
-import { auth1Guard } from './services/auth1.guard';
+import { auth1Guard } from './guard/auth1.guard';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { BookdetailsComponent } from './pages/bookdetails/bookdetails.component';
 import { CarsoComponent } from './carso/carso.component';

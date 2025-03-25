@@ -14,7 +14,11 @@ export class Auth2Interceptor implements HttpInterceptor {
   constructor(private service1:Service1Service) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-   
-    return next.handle(request);
+  
+    const authToken:string=this.service1.getAuthtoken();
+   const authReq=request.clone({
+       headers:request.headers.set("Athentication",`Bearer${authToken}`)
+   })
+    return next.handle(authReq);
   }
 }

@@ -18,6 +18,7 @@ export class BookingComponent implements OnInit {
   selectedSeats: Seat[] = []; // Stores currently selected seats for booking
 
   // Seat data - default values
+  
   seatArray: Seat[] = Array.from({ length: 21 }, (_, i) => ({
     seat: (i + 1).toString(),
     isBooked: false,

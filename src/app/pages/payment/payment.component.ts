@@ -53,12 +53,14 @@ export class PaymentComponent implements OnInit {
 
     try {
       const result = await this.card.tokenize();  // ✅ Now tokenize() exists
-
+     this.isPaymentLoading=true
+ 
       if (result.status === 'OK') {
+        
         this.toaster.success(
           'Payment Successful',
-          `Token: ${result.token}`,
-          { positionClass: 'toast-top-center', titleClass: 'mytoast' }
+          "Rs.100 successful",
+          { positionClass: 'toast-top-right', titleClass: 'mytoast' }
         );
         this.router.navigate(['Ticket']);
       } else if (result.errors && result.errors.length > 0) {
@@ -72,4 +74,5 @@ export class PaymentComponent implements OnInit {
       this.isPaymentLoading = false;
     }
   }
+
 }

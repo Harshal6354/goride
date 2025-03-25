@@ -1,3 +1,14 @@
-<div class="container">
+<!-- <div class="container">
     <button class="cld" (click)="save()">Success</button>
+</div> -->
+<div>
+    <button class="bg-success" (click)="getuser()">click</button>
+   
+    <select class="form-select">
+        @for (item of respons; track $index) {
+            <option>{{item.id}}</option>
+            <option>{{item.title}}</option>
+            <option>{{item.userId}}</option>
+        }
+    </select>
 </div>
