@@ -27,22 +27,17 @@
                 "input": "public"
               },
               {
-                
-                  "glob": "**/*",
-                  "input": "src/assets",
-                  "output": "/assets"
-                
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets"
               }
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/toastr/build/toastr.css"
-
-              
             ],
-            "scripts": [
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -102,15 +97,26 @@
               "src/styles.css",
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/toastr/build/toastr.css"
-
             ],
             "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         }
       }
     }
   },
   "cli": {
-    "analytics": "09b22876-54f7-4f3d-8eb2-3c86a7e10774"
+    "analytics": "09b22876-54f7-4f3d-8eb2-3c86a7e10774",
+    "schematicCollections": [
+      "angular-eslint"
+    ]
   }
 }
