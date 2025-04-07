@@ -79,7 +79,7 @@
   <!-- Buses List -->
   <section id="buses-list" class="my-4">
     @if (newbusList.length === 0) {
-    <h2>POPULAR BUSES</h2>
+    <h2 class="Popular">💥Popular Buses💥</h2>
     <div class="row">
       <div class="col-12">
         <div class="card mb-3">
@@ -87,7 +87,7 @@
             <div
               class="col-md-3 d-flex flex-column justify-content-center align-items-center"
             >
-              <h5 class="card-title">Raj-Ahm</h5>
+              <h5 class="card-title">Rajkot to Ahmedabad</h5>
               <p class="card-text">A/C Sleeper (2+1)</p>
             </div>
 
@@ -137,8 +137,10 @@
       </div>
     </div>
 
-    } @for (items of newbusList; track $index) {
-    <h2>Available Buses<span></span></h2>
+    } @if (newbusList.length > 0) {
+    <h2 class="Popular">Available Buses</h2>
+    @for (items of newbusList; track $index) {
+
     <div class="row">
       <div class="col-12">
         <div class="card mb-3">
@@ -197,9 +199,9 @@
         </div>
       </div>
     </div>
-    }
+    } }
   </section>
-  <h1 id="Special1">SPEACIAL OFFERS</h1>
+  <h1 id="Special1">⚡️Super Offer⚡️</h1>
   <div
     class="row"
     style="display: flex; justify-content: center; align-items: center"
@@ -351,8 +353,7 @@
             <div class="card-body">
               <h5 class="card-title">Special Offers 🎉</h5>
               <p class="card-text">
-                Exclusive holiday discounts on all tickets. Book now and save
-                big!
+                Exclusive Card discounts on all tickets. Book now and save big!
               </p>
               <a href="#" class="btn btn-danger">Book Now</a>
             </div>

@@ -1,0 +1,25 @@
+<p>offer works!</p>
+<div class="container mt-5">
+  <h2 class="text-center text-primary mb-4">Exciting Offers for You!</h2>
+
+  <div class="row g-4">
+    <div class="col-md-4" *ngFor="let offer of offers">
+      <div class="card shadow-sm h-100">
+        <img [src]="offer.image" class="card-img-top" alt="Offer Image" />
+        <div class="card-body">
+          <h5 class="card-title">{{ offer.title }}</h5>
+          <p class="card-text">{{ offer.description }}</p>
+          <span class="badge bg-success">Save {{ offer.discount }}%</span>
+        </div>
+        <div class="card-footer text-center">
+          <button
+            class="btn btn-outline-primary w-100"
+            (click)="applyOffer(offer)"
+          >
+            Apply Offer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

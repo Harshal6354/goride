@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { FooComponent } from './pages/foo/foo.component';
+import { FooComponent } from './pages/footer/foo.component';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
