@@ -153,4 +153,7 @@ export class SearchComponent {
       },
     });
   }
+  gotobookingFromS() {
+    this.router.navigate(['/booking']);
+  }
 }

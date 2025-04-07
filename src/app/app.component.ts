@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, FooComponent],
+  imports: [RouterOutlet, FooComponent, RouterLink],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

@@ -1,6 +1,5 @@
 import { CanActivateFn, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { inject } from '@angular/core';
-
 export const auth1Guard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
   const router = inject(Router);
   const isAuthenticated = Boolean(localStorage.getItem('auth1'));

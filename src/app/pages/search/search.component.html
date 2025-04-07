@@ -1,8 +1,7 @@
 <!-- Search Form -->
 <div class="container">
   <header class="my-4">
-    <h1 class="text-center" >Bus Booking System</h1>
-   
+    <h1 class="text-center">Bus Booking System</h1>
   </header>
   <section>
     <div class="container mt-5 d-flex justify-content-center">
@@ -10,38 +9,68 @@
         <div class="row w-100 text-white">
           <div class="col-md-3 d-flex align-items-center">
             <div class="input-group">
-              <span class="input-group-text"><i class="bi bi-bus-front"></i></span>
-              <select class="form-select" name="fromLocation" [(ngModel)]="searchObj.fromLocation">
+              <span class="input-group-text"
+                ><i class="bi bi-bus-front"></i
+              ></span>
+              <select
+                class="form-select"
+                name="fromLocation"
+                [(ngModel)]="searchObj.fromLocation"
+              >
                 <option value="">Select from Location</option>
                 @for (item of busList; track $index) {
-                <option [value]="item.fromLocation">{{item.fromLocation}}</option>
+                <option [value]="item.fromLocation">
+                  {{ item.fromLocation }}
+                </option>
                 }
               </select>
             </div>
           </div>
-          <div class="col-md-1 text-center d-flex align-items-center justify-content-center arrow">
+          <div
+            class="col-md-1 text-center d-flex align-items-center justify-content-center arrow"
+          >
             <i class="fa-solid fa-right-left"></i>
           </div>
           <div class="col-md-3 d-flex align-items-center">
             <div class="input-group">
-              <span class="input-group-text"><i class="bi bi-bus-front"></i></span>
-              <select class="form-select" name="toLocation" [(ngModel)]="searchObj.toLocation">
+              <span class="input-group-text"
+                ><i class="bi bi-bus-front"></i
+              ></span>
+              <select
+                class="form-select"
+                name="toLocation"
+                [(ngModel)]="searchObj.toLocation"
+              >
                 <option value="">Select to Location</option>
                 @for (item of busList; track $index) {
-                <option [value]="item.toLocation">{{item.toLocation}}</option>
+                <option [value]="item.toLocation">{{ item.toLocation }}</option>
                 }
               </select>
             </div>
           </div>
           <div class="col-md-3 d-flex align-items-center">
             <div class="input-group">
-              <span class="input-group-text"><i class="bi bi-calendar"></i></span>
-              <input type="date" class="form-control" name="travelDate" [(ngModel)]="searchObj.departureTime"
-                placeholder="Date" value="17 Aug 2024">
+              <span class="input-group-text"
+                ><i class="bi bi-calendar"></i
+              ></span>
+              <input
+                type="date"
+                class="form-control"
+                name="travelDate"
+                [(ngModel)]="searchObj.departureTime"
+                placeholder="Date"
+                value="17 Aug 2024"
+              />
             </div>
           </div>
           <div class="col-md-2 text-center">
-            <button type="button" (click)="onSearch()" class="btn btn-light text-danger w-100">SEARCH BUSES</button>
+            <button
+              type="button"
+              (click)="onSearch()"
+              class="btn btn-light text-danger w-100"
+            >
+              SEARCH BUSES
+            </button>
           </div>
         </div>
       </form>
@@ -49,25 +78,23 @@
   </section>
   <!-- Buses List -->
   <section id="buses-list" class="my-4">
-    <h2>Available Buses</h2>
-
     @if (newbusList.length === 0) {
-    <p class="text-center text-bg-success">Select the city for Buses.</p>
-    }
-    @for (items of newbusList; track $index) {
+    <h2>POPULAR BUSES</h2>
     <div class="row">
       <div class="col-12">
         <div class="card mb-3">
           <div class="row g-0">
-            <div class="col-md-3 d-flex flex-column justify-content-center align-items-center">
-              <h5 class="card-title">{{items.busName}}</h5>
+            <div
+              class="col-md-3 d-flex flex-column justify-content-center align-items-center"
+            >
+              <h5 class="card-title">Raj-Ahm</h5>
               <p class="card-text">A/C Sleeper (2+1)</p>
             </div>
 
             <div class="col-md-9">
               <div class="card-body row">
                 <div class="col-md-2">
-                  <p class="card-text">{{items.departureTime}}</p>
+                  <p class="card-text">2025-04-21T17:00:04</p>
                   <p class="card-text">departureTime</p>
                 </div>
 
@@ -77,24 +104,92 @@
                 </div>
 
                 <div class="col-md-2">
-                  <p class="card-text"><strong>{{items.arrivalTime}}</strong></p>
+                  <p class="card-text">
+                    <strong>2025-04-21 T07:00:10</strong>
+                  </p>
                   <p class="card-text">Arrival</p>
                   <p class="text-danger">18-Aug</p>
                 </div>
 
                 <div class="col-md-2">
-                  <p class="card-text"><strong>{{items.rating}}</strong> ⭐</p>
+                  <p class="card-text"><strong>4.0</strong> ⭐</p>
                   <p class="card-text">567 Ratings</p>
                 </div>
 
                 <div class="col-md-2">
-                  <p class="card-text"><strong>{{items.price}} INR</strong></p>
-                  <p class="card-text"><b>{{items.availableSeat}}</b> Seats are available out of
-                    <b>{{items.totalSeats}}</b>
+                  <p class="card-text">
+                    <strong>2000 INR</strong>
+                  </p>
+                  <p class="card-text">
+                    <b>34</b> Seats are available out of
+                    <b>40</b>
                   </p>
                 </div>
                 <div class="col-md-2 text-end">
-                  <button class="btn btn-danger" (click)="goToBooking2(items)">Book Seat</button>
+                  <button class="btn btn-danger" (click)="gotobookingFromS()">
+                    Book Seat
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    } @for (items of newbusList; track $index) {
+    <h2>Available Buses<span></span></h2>
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-3">
+          <div class="row g-0">
+            <div
+              class="col-md-3 d-flex flex-column justify-content-center align-items-center"
+            >
+              <h5 class="card-title">{{ items.busName }}</h5>
+              <p class="card-text">A/C Sleeper (2+1)</p>
+            </div>
+
+            <div class="col-md-9">
+              <div class="card-body row">
+                <div class="col-md-2">
+                  <p class="card-text">{{ items.departureTime }}</p>
+                  <p class="card-text">departureTime</p>
+                </div>
+
+                <div class="col-md-2">
+                  <p class="card-text"><strong>13h 55m</strong></p>
+                  <p class="card-text">Duration</p>
+                </div>
+
+                <div class="col-md-2">
+                  <p class="card-text">
+                    <strong>{{ items.arrivalTime }}</strong>
+                  </p>
+                  <p class="card-text">Arrival</p>
+                  <p class="text-danger">18-Aug</p>
+                </div>
+
+                <div class="col-md-2">
+                  <p class="card-text">
+                    <strong>{{ items.rating }}</strong> ⭐
+                  </p>
+                  <p class="card-text">567 Ratings</p>
+                </div>
+
+                <div class="col-md-2">
+                  <p class="card-text">
+                    <strong>{{ items.price }} INR</strong>
+                  </p>
+                  <p class="card-text">
+                    <b>{{ items.availableSeat }}</b> Seats are available out of
+                    <b>{{ items.totalSeats }}</b>
+                  </p>
+                </div>
+                <div class="col-md-2 text-end">
+                  <button class="btn btn-danger" (click)="goToBooking2(items)">
+                    Book Seat
+                  </button>
                 </div>
               </div>
             </div>
@@ -104,86 +199,192 @@
     </div>
     }
   </section>
-
-
- 
- 
- <div class="row" style="display: flex; justify-content: center; align-items: center;">
-    <div class="container fixed" style="display: flex; flex-wrap: nowrap; justify-content: flex-start;">
-        <div class="scrollable-container offer-scrollable-container primary hide-scrollbar" 
-             style="display: flex; flex-flow: row nowrap; align-items: center; width: 100%; scroll-behavior: smooth; overflow-x: auto; gap: 10px;">
-             
-            <img src="https://static.abhibus.com/offerbanners/Nov2024/16/1731757944-Wedding720x360.webp" alt="Get Rs.500 Off on 1st Booking" width="340" height="170">
-            <img src="https://static.abhibus.com/offerbanners/Feb2025/24/1740398894-720x360.webp" alt="Flat Rs.200 Off with ICICI Bank Credit Card" width="340" height="170">
-            <img src="https://static.abhibus.com/offerbanners/Jun2024/04/1717449451-apsrtc-bus-offer.webp" alt="Save upto Rs.300 on APSRTC bookings" width="340" height="170">
-            <img src="https://static.abhibus.com/offerbanners/Oct2024/07/1728295367-720x360.webp" alt="Save upto Rs.300 on TGSRTC bookings" width="340" height="170">
-            <img src="https://static.abhibus.com/offerbanners/Dec2024/30/1735561676-720x360.webp" alt="Save upto Rs.300 on KSRTC bookings" width="340" height="170">
-            <img src="https://static.abhibus.com/offerbanners/Jul2024/03/1719986415-720x360.webp" alt="Flat Rs.300 off with RBL Bank Credit Card" width="340" height="170">
-            <img src="https://static.abhibus.com/offerbanners/Aug2024/02/1722592574-720x360.webp" alt="Flat Rs.150 off with AU Bank Credit Card" width="340" height="170">
-            <img src="https://static.abhibus.com/busgallery/offerbanners/Nov2023/24/1700820925-720x360-ixigo-au.png" alt="Flat 10% off via ixigo - AU Bank Credit Card" width="340" height="170">
-            <img src="https://static.abhibus.com/offerbanners/Jun2024/04/1717448842-abhiparty-bus-offer.webp" alt="Travel Party: Rs.250 off on group bookings" width="340" height="170">
-        </div>
+  <h1 id="Special1">SPEACIAL OFFERS</h1>
+  <div
+    class="row"
+    style="display: flex; justify-content: center; align-items: center"
+  >
+    <div
+      class="container fixed"
+      style="display: flex; flex-wrap: nowrap; justify-content: flex-start"
+    >
+      <div
+        class="scrollable-container offer-scrollable-container primary hide-scrollbar"
+        style="
+          display: flex;
+          flex-flow: row nowrap;
+          align-items: center;
+          width: 100%;
+          scroll-behavior: smooth;
+          overflow-x: auto;
+          gap: 10px;
+        "
+      >
+        <img
+          src="https://static.abhibus.com/offerbanners/Nov2024/16/1731757944-Wedding720x360.webp"
+          alt="Get Rs.500 Off on 1st Booking"
+          width="340"
+          height="170"
+        />
+        <img
+          src="https://static.abhibus.com/offerbanners/Feb2025/24/1740398894-720x360.webp"
+          alt="Flat Rs.200 Off with ICICI Bank Credit Card"
+          width="340"
+          height="170"
+        />
+        <img
+          src="https://static.abhibus.com/offerbanners/Jun2024/04/1717449451-apsrtc-bus-offer.webp"
+          alt="Save upto Rs.300 on APSRTC bookings"
+          width="340"
+          height="170"
+        />
+        <img
+          src="https://static.abhibus.com/offerbanners/Oct2024/07/1728295367-720x360.webp"
+          alt="Save upto Rs.300 on TGSRTC bookings"
+          width="340"
+          height="170"
+        />
+        <img
+          src="https://static.abhibus.com/offerbanners/Dec2024/30/1735561676-720x360.webp"
+          alt="Save upto Rs.300 on KSRTC bookings"
+          width="340"
+          height="170"
+        />
+        <img
+          src="https://static.abhibus.com/offerbanners/Jul2024/03/1719986415-720x360.webp"
+          alt="Flat Rs.300 off with RBL Bank Credit Card"
+          width="340"
+          height="170"
+        />
+        <img
+          src="https://static.abhibus.com/offerbanners/Aug2024/02/1722592574-720x360.webp"
+          alt="Flat Rs.150 off with AU Bank Credit Card"
+          width="340"
+          height="170"
+        />
+        <img
+          src="https://static.abhibus.com/busgallery/offerbanners/Nov2023/24/1700820925-720x360-ixigo-au.png"
+          alt="Flat 10% off via ixigo - AU Bank Credit Card"
+          width="340"
+          height="170"
+        />
+        <img
+          src="https://static.abhibus.com/offerbanners/Jun2024/04/1717448842-abhiparty-bus-offer.webp"
+          alt="Travel Party: Rs.250 off on group bookings"
+          width="340"
+          height="170"
+        />
+      </div>
     </div>
 
     <!-- Slide Navigation Button -->
-    <button class="btn btn-slide-nav outlined primary md inactive button" aria-label="offers-slide-right"
-            style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); z-index: 1;">
-       
-    </button><br>
-</div><br>
-<h1>Why Choose GoRide for Bus Ticket Booking ?</h1>
-<p>GoRide is India’s fastest growing online ticket booking platform. GoRide is the official ticketing partner of several State Road Transport Corporation (SRTC) operators and over 4000+ private bus partners covering more than 3,50,000 bus routes</p>
-
-<br>
-<div class="card">
-  <div class="card-header">
-   book now from India
+    <button
+      class="btn btn-slide-nav outlined primary md inactive button"
+      aria-label="offers-slide-right"
+      style="
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+      "
+    ></button
+    ><br />
   </div>
-  <div class="row">
-    <div class="col-4">
-  <div class="card" style="width: 25rem; text-align: center; border-radius: 10px; overflow: hidden;">
-    <img src="https://static.abhibus.com/offerbanners/Jun2024/04/1717448842-abhiparty-bus-offer.webp" 
-         class="card-img-top" 
-         alt="Special Offers" 
-         style="height: 150px; object-fit: cover;">
-    <div class="card-body">
-      <h5 class="card-title">Special Offers 🎉</h5>
-      <p class="card-text">Exclusive holiday discounts on all tickets. Book now and save big!</p>
-      <a href="#" class="btn btn-danger">Book Now</a>
+  <!-- Why GoRide -->
+  <section class="mb-5 whychoose">
+    <h2 class="text-center mb-3 text-danger">
+      Why Choose GoRide for Bus Ticket Booking?
+    </h2>
+    <p class="lead text-center">
+      GoRide is India’s fastest growing online ticket booking platform. Official
+      partner with several SRTC operators and 4000+ private bus operators,
+      covering over 3,50,000 routes.
+    </p>
+  </section>
+  <div class="card">
+    <div class="card-header">book now from India</div>
+    <div class="Cardforbook">
+      <div class="row">
+        <div class="col-4">
+          <div
+            class="card"
+            style="
+              width: 25rem;
+              text-align: center;
+              border-radius: 10px;
+              overflow: hidden;
+            "
+          >
+            <img
+              src="https://static.abhibus.com/offerbanners/Jun2024/04/1717448842-abhiparty-bus-offer.webp"
+              class="card-img-top"
+              alt="Special Offers"
+              style="height: 200px; object-fit: cover"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Special Offers 🎉</h5>
+              <p class="card-text">
+                Exclusive holiday discounts on all tickets. Book now and save
+                big!
+              </p>
+              <a href="#" class="btn btn-danger">Book Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div
+            class="card"
+            style="
+              width: 25rem;
+              text-align: center;
+              border-radius: 10px;
+              overflow: hidden;
+            "
+          >
+            <img
+              src="https://static.abhibus.com/offerbanners/Jul2024/03/1719986415-720x360.webp"
+              class="card-img-top"
+              alt="Special Offers"
+              style="height: 200px; object-fit: cover"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Special Offers 🎉</h5>
+              <p class="card-text">
+                Exclusive holiday discounts on all tickets. Book now and save
+                big!
+              </p>
+              <a href="#" class="btn btn-danger">Book Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div
+            class="card"
+            style="
+              width: 25rem;
+              text-align: center;
+              border-radius: 10px;
+              overflow: hidden;
+            "
+          >
+            <img
+              src="https://static.abhibus.com/busgallery/offerbanners/Nov2023/24/1700820925-720x360-ixigo-au.png"
+              class="card-img-top"
+              alt="Special Offers"
+              style="height: 200px; object-fit: cover"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Special Offers 🎉</h5>
+              <p class="card-text">
+                Exclusive holiday discounts on all tickets. Book now and save
+                big!
+              </p>
+              <a href="#" class="btn btn-danger">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
- </div>
-    <div class="col-4">
-  <div class="card" style="width: 25rem; text-align: center; border-radius: 10px; overflow: hidden;">
-    <img src="https://static.abhibus.com/offerbanners/Jun2024/04/1717448842-abhiparty-bus-offer.webp" 
-         class="card-img-top" 
-         alt="Special Offers" 
-         style="height: 150px; object-fit: cover;">
-    <div class="card-body">
-      <h5 class="card-title">Special Offers 🎉</h5>
-      <p class="card-text">Exclusive holiday discounts on all tickets. Book now and save big!</p>
-      <a href="#" class="btn btn-danger">Book Now</a>
-    </div>
-  </div>
- </div>
-    <div class="col-4">
-  <div class="card" style="width: 25rem; text-align: center; border-radius: 10px; overflow: hidden;">
-    <img src="https://static.abhibus.com/offerbanners/Jun2024/04/1717448842-abhiparty-bus-offer.webp" 
-         class="card-img-top" 
-         alt="Special Offers" 
-         style="height: 150px; object-fit: cover;">
-    <div class="card-body">
-      <h5 class="card-title">Special Offers 🎉</h5>
-      <p class="card-text">Exclusive holiday discounts on all tickets. Book now and save big!</p>
-      <a href="#" class="btn btn-danger">Book Now</a>
-    </div>
-  </div>
- </div>
-  
-</div>
-  
-</div>
-
-
-
 </div>

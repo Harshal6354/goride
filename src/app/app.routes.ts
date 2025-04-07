@@ -8,44 +8,47 @@ import { BookdetailsComponent } from './pages/bookdetails/bookdetails.component'
 import { CarsoComponent } from './carso/carso.component';
 
 export const routes: Routes = [
-    {
-        path: '',
-        redirectTo: 'login', pathMatch: 'full'
-    },
-    {
-        path: 'login',
-        component: LoginComponent,
-        canActivate: [auth1Guard]
-    },
-    {
-        path: 'search',
-        component: SearchComponent,
-        canActivate: [auth1Guard]
-    },
-    {
-        path: 'booking',
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [auth1Guard],
+  },
+  {
+    path: 'search',
+    component: SearchComponent,
+    canActivate: [auth1Guard],
+  },
+  {
+    path: 'booking',
 
-        component: BookingComponent,
-        canActivate: [auth1Guard]
-    },
-    {
-        path: 'booking/:id', component: BookingComponent,
-        canActivate: [auth1Guard]
-    },
-    {
-        path: 'payment',
-        component: PaymentComponent,
-        canActivate: [auth1Guard]
-    },
-    {
-          path:'Ticket',
-          component:BookdetailsComponent
-    },
-    {
-            path:'cars',
-            component:CarsoComponent
-    },
+    component: BookingComponent,
+    canActivate: [auth1Guard],
+  },
+  {
+    path: 'booking/:id',
+    component: BookingComponent,
+    canActivate: [auth1Guard],
+  },
+  {
+    path: 'payment',
+    component: PaymentComponent,
+    canActivate: [auth1Guard],
+  },
+  {
+    path: 'Ticket',
+    component: BookdetailsComponent,
+    canActivate: [auth1Guard],
+  },
+  {
+    path: 'cars',
+    component: CarsoComponent,
+  },
 
-    // Catch-all route for unknown paths
-    { path: '**', redirectTo: 'login' }
+  // Catch-all route for unknown paths
+  { path: '**', redirectTo: 'login' },
 ];

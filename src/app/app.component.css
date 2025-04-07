@@ -1,51 +1,51 @@
 nav {
-    background-color: rgb(208, 78, 78);
+  background-color: rgb(208, 78, 78);
 }
 html,
 body {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Main content should take remaining space */
 .main-content {
-    flex: 1;
-    overflow-y: auto;
+  flex: 1;
+  overflow-y: auto;
 }
 
 /* Fixed Footer Styling */
 
 .login1 {
-    background-color: aqua;
-    margin: 5px;
-    font-weight: 600;
-    border-radius: 10px;
+  background-color: aqua;
+  margin: 5px;
+  font-weight: 600;
+  border-radius: 10px;
 
-    &:hover {
-        color: rgb(201, 76, 76);
-    }
+  &:hover {
+    color: rgb(201, 76, 76);
+  }
 }
 
 .logout {
-    background-color: rgb(243, 245, 242);
-    margin: 5px;
-    font-weight: 600;
-    border-radius: 10px;
+  background-color: rgb(243, 245, 242);
+  margin: 5px;
+  font-weight: 600;
+  border-radius: 10px;
 
-    &:hover {
-        color: rgb(201, 76, 76);
-    }
+  &:hover {
+    color: rgb(201, 76, 76);
+  }
 }
 
 .busbook {
-    color: rgb(15, 15, 12);
-    margin-right: 20px;
-    font-size: 30px;
+  color: rgb(15, 15, 12);
+  margin-right: 20px;
+  font-size: 30px;
 
-    &:hover {
-        color: aqua;
-    }
+  &:hover {
+    color: aqua;
+  }
 }
 /* footer */

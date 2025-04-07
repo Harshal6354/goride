@@ -25,6 +25,5 @@ export class CarsoComponent {
       timeOut: 500,
     });
   }
-
   respons: Iuser[] = [];
 }
