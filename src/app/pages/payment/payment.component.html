@@ -1,22 +1,29 @@
 <div class="payment-container">
-    <h2>Complete Your Payment</h2>
-    <div id="card-container"></div>
-    <button 
-      id="card-button" 
-      [disabled]="isPaymentLoading" 
-      (click)="handlePayment()" 
-      class="pay-button">
-      <ng-template>
+  <h2>Complete Your Payment</h2>
+  <div id="card-container"></div>
+  <button
+    id="card-button"
+    [disabled]="isPaymentLoading"
+    (click)="handlePayment()"
+    class="pay-button"
+  >
+    <ng-template>
+      <div class="spinner-border text-primary"></div>
+    </ng-template>
+    <span *ngIf="isPaymentLoading">Processing...</span>
+
+    <ng-container>
+      <div *ngIf="isPaymentLoading">
         <div class="spinner-border text-primary"></div>
-      </ng-template>
-      <span *ngIf="isPaymentLoading" >Processing...</span>
-      
-      <ng-container>
-        <div *ngIf="isPaymentLoading">
-          <div class="spinner-border text-primary"></div>
-        </div>
-      <span *ngIf="!isPaymentLoading" >Pay Now $100</span>
+      </div>
+      <span *ngIf="!isPaymentLoading"
+        >Pay Now
+        {{
+          totalAmount
+            | currency
+              : "INR                                                                                                                                         "
+        }}</span
+      >
     </ng-container>
-    </button>
-  </div>
-  
+  </button>
+</div>

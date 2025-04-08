@@ -1,14 +1,14 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 import { Seat } from '../../core/model/interface/seat.model';
 import { Service1Service } from '../../services/service1.service';
 
 @Component({
   selector: 'app-booking',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, RouterModule],
   templateUrl: './booking.component.html',
   styleUrls: ['./booking.component.css'],
 })
@@ -25,7 +25,6 @@ export class BookingComponent implements OnInit {
     passenger: null,
     isSelected: false,
   }));
-
   ngOnInit() {
     // Load saved seat data from local storage if available
     const savedSeats = localStorage.getItem('seatArray');
@@ -110,10 +109,34 @@ export class BookingComponent implements OnInit {
     const bookedSeats = this.seatArray.filter((seat) => seat.isBooked);
     if (bookedSeats.length > 0) {
       localStorage.setItem('selectedSeats', JSON.stringify(bookedSeats));
+      localStorage.setItem(
+        'totalAmount',
+        JSON.stringify(this.totalBookedAmount)
+      );
+
       this.service1.navigateToPayment(bookedSeats);
       // this.router.navigate(['/payment'], { queryParams: { seats: JSON.stringify(bookedSeats) } });
     } else {
       alert('No booked seats available for payment.');
     }
+  }
+
+  //booking price
+  ticketPrice: number = 0;
+
+  constructor(private route: ActivatedRoute) {
+    this.route.queryParams.subscribe((params) => {
+      this.ticketPrice = +params['price'] || 0;
+    });
+  }
+
+  get totalSelectedAmount(): number {
+    return this.selectedSeats.length * this.ticketPrice;
+  }
+
+  get totalBookedAmount(): number {
+    return (
+      this.seatArray.filter((seat) => seat.isBooked).length * this.ticketPrice
+    );
   }
 }

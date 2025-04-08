@@ -17,7 +17,6 @@ export class Service1Service {
   }));
 
   selectedSeats: Seat[] = []; // Stores currently selected seats for booking
-
   constructor() {
     const savedSeats = localStorage.getItem('seatArray');
     if (savedSeats) {

@@ -150,6 +150,7 @@ export class SearchComponent {
       queryParams: {
         totalSeats: busList.totalSeats,
         availableSeats: busList.availableSeat,
+        price: busList.price,
       },
     });
   }

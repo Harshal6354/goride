@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Seat } from '../../core/model/interface/seat.model';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-bookdetails',
@@ -22,5 +23,17 @@ export class BookdetailsComponent implements OnInit {
       this.bookedTickets = allSeats.filter((seat: Seat) => seat.isBooked);
       console.log('Booked Tickets:', this.bookedTickets);
     }
+  }
+  downloadBookedTickets() {
+    let content = 'booked ticketes';
+
+    this.bookedTickets.forEach((ticket) => {
+      content += `seat no:${ticket.seat}\n`;
+      content += `Name:${ticket.passenger?.name}`;
+      content += `Age:${ticket.passenger?.age}`;
+      content += `Gender:${ticket.passenger?.gender}`;
+    });
+    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+    saveAs(blob, 'Booked-Tickets.txt');
   }
 }

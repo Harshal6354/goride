@@ -1,14 +1,15 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Payments, Card } from '@square/web-sdk';
+import { Seat } from '../../core/model/interface/seat.model';
 
 @Component({
   selector: 'app-payment',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, CurrencyPipe],
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.css'],
 })
@@ -17,11 +18,19 @@ export class PaymentComponent implements OnInit {
   card: Card | null = null; // ✅ Use `Card` instead of `PaymentMethod`
   isPaymentLoading = false;
   errorMessage = '';
+  selectedSeats: Seat[] = []; // Stores currently selected seats for booking
+  totalAmount: number = 0;
 
   constructor(private toaster: ToastrService) {}
 
   async ngOnInit() {
+    const totalAmount = localStorage.getItem('totalAmount');
+    if (totalAmount) {
+      this.totalAmount = JSON.parse(totalAmount);
+    }
+
     // Ensure Square SDK is loaded
+
     if (!window.Square) {
       this.errorMessage = 'Square Web SDK failed to load.';
       return;
