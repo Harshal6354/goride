@@ -296,7 +296,7 @@
   <!-- Why GoRide -->
   <section class="mb-5 whychoose">
     <h2 class="text-center mb-3 text-danger">
-      Why Choose GoRide for Bus Ticket Booking?
+      <b>Why Choose GoRide for Bus Ticket Booking?</b>
     </h2>
     <p class="lead text-center">
       GoRide is India’s fastest growing online ticket booking platform. Official
@@ -304,13 +304,13 @@
       covering over 3,50,000 routes.
     </p>
   </section>
+  <div class="text-center textbtn1"><b>⚡️Festive Offers⚡️</b></div>
   <div class="card">
-    <div class="card-header">book now from India</div>
     <div class="Cardforbook">
       <div class="row">
         <div class="col-4">
           <div
-            class="card"
+            class="card offer-card"
             style="
               width: 25rem;
               text-align: center;
@@ -336,7 +336,7 @@
         </div>
         <div class="col-4">
           <div
-            class="card"
+            class="card offer-card"
             style="
               width: 25rem;
               text-align: center;
@@ -361,7 +361,7 @@
         </div>
         <div class="col-4">
           <div
-            class="card"
+            class="card offer-card"
             style="
               width: 25rem;
               text-align: center;
@@ -388,4 +388,37 @@
       </div>
     </div>
   </div>
+  <section class="faq-section">
+    <h2 id="faqh2"><b>Frequently Asked Questions</b></h2>
+    <div class="faq" *ngFor="let item of faqList">
+      <div
+        class="question"
+        role="button"
+        tabindex="0"
+        (click)="toggle(item)"
+        (keydown)="handleKey($event, item)"
+      >
+        {{ item.question }}
+        <span class="icon">{{ item.open ? "-" : "+" }}</span>
+      </div>
+      <div class="answer" *ngIf="item.open">
+        {{ item.answer }}
+      </div>
+    </div>
+    <!-- FAQbycustomer -->
+
+    <div class="custom-qustion">
+      <h4 id="customerh4">ASK QUESTION REGARDING THIS WEBSITE.</h4>
+      <input
+        class="inputcustomer"
+        type="text"
+        [(ngModel)]="newQuestion"
+        placeholder="Type your question"
+      />
+      <button class="btnsubmit" (click)="SubmitQuestions()">Submit</button>
+      <p id="submitP" *ngIf="QuestionSubmited" style="color: green">
+        Thank you! Your question has been submitted.
+      </p>
+    </div>
+  </section>
 </div>

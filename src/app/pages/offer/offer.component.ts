@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 interface offer {
   title: string;
   description: string;
@@ -17,6 +18,7 @@ interface offer {
 })
 export class OfferComponent {
   router = inject(Router);
+  toast = inject(ToastrService);
   offers = [
     {
       title: 'First Ride Free!',
@@ -53,7 +55,7 @@ export class OfferComponent {
   ];
 
   applyOffer(offer: offer) {
-    alert(`Applied Offer: ${offer.title}`);
+    this.toast.success(`Applied Offer: ${offer.title}`, '', { timeOut: 5000 });
     this.router.navigateByUrl('serach');
   }
 }

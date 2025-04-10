@@ -17,12 +17,7 @@
         <div class="spinner-border text-primary"></div>
       </div>
       <span *ngIf="!isPaymentLoading"
-        >Pay Now
-        {{
-          totalAmount
-            | currency
-              : "INR                                                                                                                                         "
-        }}</span
+        >Pay Now {{ totalAmount | currency : "INR" }}</span
       >
     </ng-container>
   </button>

@@ -4,7 +4,11 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Bus } from '../../core/model/interface/bus.model';
 import { MasterService } from '../../services/master.service';
-
+interface faqList {
+  question: string;
+  answer: string;
+  open: boolean;
+}
 @Component({
   selector: 'app-search',
   standalone: true,
@@ -156,5 +160,51 @@ export class SearchComponent {
   }
   gotobookingFromS() {
     this.router.navigate(['/booking']);
+  }
+
+  faqList: faqList[] = [
+    {
+      question: 'How do I book a bus ticket?',
+      answer:
+        'Select your source, destination, and date, then choose a bus and proceed with payment.',
+      open: false,
+    },
+    {
+      question: 'Can I cancel my ticket?',
+      answer:
+        'Yes, you can cancel your ticket from the "My Bookings" section before the departure time.',
+      open: false,
+    },
+    {
+      question: 'Do I need to carry a printout?',
+      answer: 'yes, you can show the e-ticket on your mobile.',
+      open: false,
+    },
+    {
+      question: 'Can I apply special offer code?',
+      answer: 'yes, you can apply offer code on ticket section.',
+      open: false,
+    },
+  ];
+  newQuestion: string = '';
+  QuestionSubmited: boolean = false;
+  toggle(item: faqList) {
+    item.open = !item.open;
+  }
+  handleKey(event: KeyboardEvent, item: faqList) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.toggle(item);
+    }
+  }
+
+  SubmitQuestions() {
+    if (this.newQuestion.trim()) {
+      this.QuestionSubmited = true;
+      this.newQuestion = '';
+      setTimeout(() => {
+        this.QuestionSubmited = false;
+      }, 3000);
+    }
   }
 }

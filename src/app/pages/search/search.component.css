@@ -3,15 +3,64 @@
   margin-top: 5px;
 }
 
-.card {
+/* .offer-card {
   transition: all 0.3s ease-in-out;
   border: none;
   border-radius: 15px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
-.card:hover {
+.offer-card:hover {
   transform: translateY(-5px);
+} */
+.textbtn1 {
+  color: #dc3545;
+  background-color: white;
+  font-size: 30px;
+  margin-top: 5rem;
+  margin-bottom: 2rem;
+}
+.offer-card {
+  transition: all 0.4s ease-in-out;
+  margin-top: 30px;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  background: linear-gradient(to bottom right, #ffffff, #f9f9f9);
+  overflow: hidden;
+  position: relative;
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Optional: add a decorative ribbon */
+.offer-card::before {
+  content: "🔥 Hot Deal";
+  position: absolute;
+  top: 10px;
+  left: -40px;
+  background: #dc3545;
+  color: white;
+  padding: 5px 60px;
+  transform: rotate(-45deg);
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Smooth button effect */
+.offer-card .btn-danger {
+  transition: background 0.3s, transform 0.3s;
+  font-weight: bold;
+  border-radius: 50px;
+  padding: 8px 20px;
+}
+
+.offer-card .btn-danger:hover {
+  background-color: #c82333;
+  transform: scale(1.05);
 }
 
 #Special1 {
@@ -41,4 +90,110 @@
   font-weight: bold;
   margin: 60px 0 20px;
   color: #dc3545;
+}
+.faq-section {
+  max-width: auto;
+
+  margin-top: 40px;
+  padding: 20px;
+  font-family: "Segoe UI", sans-serif;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+#faqh2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 24px;
+  color: #e82929;
+}
+
+.faq {
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.question {
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 12px;
+  background: #fff;
+  border-radius: 8px;
+  outline: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.question:focus {
+  box-shadow: 0 0 0 2px #007bff66;
+}
+
+.icon {
+  font-size: 20px;
+  color: #007bff;
+}
+
+.answer {
+  padding: 10px 12px;
+  color: #555;
+  font-size: 15px;
+  background-color: #fff;
+  border-radius: 0 0 8px 8px;
+  margin-top: 5px;
+}
+
+.custom-qustion {
+  margin-top: 40px;
+  padding: 20px;
+  background: #dfe4e7;
+  border: 1px solid #286eb9;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 140, 255, 0.08);
+}
+
+#customerh4 {
+  margin-bottom: 10px;
+  font-size: 30px;
+  color: #dc3545;
+  text-align: center;
+  align-items: center;
+}
+
+.inputcustomer {
+  width: 65rem;
+
+  padding: 12px 14px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  outline: none;
+  transition: border 0.3;
+  &:focus {
+    border-color: #3399ff;
+  }
+}
+.btnsubmit {
+  color: black;
+  background-color: rgb(225, 120, 120);
+  padding: 10px 18px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.3s ease;
+  margin-left: 10px;
+  &:hover {
+    background: #0056b3;
+  }
+}
+#submitP {
+  margin-top: 10px;
+  width: auto;
+  font-size: 14px;
 }
