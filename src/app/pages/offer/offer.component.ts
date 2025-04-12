@@ -25,32 +25,35 @@ export class OfferComponent {
       description: 'Book your first ride and get 100% cashback up to ₹100.',
       discount: 100,
       image:
-        'https://img.freepik.com/free-vector/flat-travel-background_23-2148051402.jpg',
+        'https://static.abhibus.com/offerbanners/Apr2025/12/1744396792-720x360HYDVSPKSUPER60.png',
     },
     {
-      title: 'Summer Special',
+      title: 'IPL Special',
       description: 'Flat 25% off on all bookings above ₹500.',
       discount: 25,
       image:
-        'https://img.freepik.com/free-vector/summer-vacation-banner_23-2148582290.jpg',
+        'https://static.abhibus.com/offerbanners/Apr2025/12/1744396546-720x360LSGVSGTSUPER60.png',
     },
     {
       title: 'Student Saver',
       description: 'Students get an extra 15% off with valid ID.',
       discount: 15,
-      image: 'assets/th (1).jpeg',
+      image:
+        'https://th.bing.com/th/id/OIP.cf9yv8YDkkaBtY6Dgj91fQHaDt?w=311&h=174&c=7&r=0&o=5&dpr=1.3&pid=1.7',
     },
     {
       title: 'Student Saver',
       description: 'Students get an extra 15% off with valid ID.',
       discount: 20,
-      image: 'assets/wl2.jpg',
+      image:
+        'https://th.bing.com/th/id/OIP.lu6I4bQHmicYniY3g7q9UAAAAA?w=304&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7',
     },
     {
       title: 'Student Saver',
       description: 'Students get an extra 15% off with valid ID.',
       discount: 30,
-      image: 'assets/myImg.jpg',
+      image:
+        'https://th.bing.com/th/id/OIP.1QaBWmDcmgSP3xMx-5uYZgHaFk?w=236&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7',
     },
   ];
 

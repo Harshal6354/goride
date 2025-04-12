@@ -15,11 +15,12 @@ import { Seat } from '../../core/model/interface/seat.model';
 })
 export class PaymentComponent implements OnInit {
   router = inject(Router);
-  card: Card | null = null; // ✅ Use `Card` instead of `PaymentMethod`
+  card: Card | null = null;
   isPaymentLoading = false;
   errorMessage = '';
-  selectedSeats: Seat[] = []; // Stores currently selected seats for booking
+  selectedSeats: Seat[] = [];
   totalAmount: number = 0;
+  selectedPaymentMethod: 'card' | 'googlePay' | 'paytm' = 'card'; // 🔁 add default
 
   constructor(private toaster: ToastrService) {}
 
@@ -29,21 +30,17 @@ export class PaymentComponent implements OnInit {
       this.totalAmount = JSON.parse(totalAmount);
     }
 
-    // Ensure Square SDK is loaded
-
     if (!window.Square) {
       this.errorMessage = 'Square Web SDK failed to load.';
       return;
     }
 
     try {
-      // Initialize Square Payments
       const payments: Payments = window.Square.payments(
         'sandbox-sq0idb-AHphDBKGrf8boGXMhm0FDQ',
         'sandbox'
       );
 
-      // Create a card payment instance
       this.card = await payments.card();
       await this.card.attach('#card-container');
     } catch (error) {
@@ -52,35 +49,55 @@ export class PaymentComponent implements OnInit {
     }
   }
 
+  payWith(method: 'card' | 'googlePay' | 'paytm') {
+    this.selectedPaymentMethod = method;
+  }
+
   async handlePayment() {
-    if (!this.card) {
-      this.errorMessage = 'Payment method is not available.';
-      return;
-    }
-
-    this.isPaymentLoading = true;
     this.errorMessage = '';
+    this.isPaymentLoading = true;
 
-    try {
-      const result = await this.card.tokenize(); // ✅ Now tokenize() exists
-      this.isPaymentLoading = true;
-
-      if (result.status === 'OK') {
-        this.toaster.success('Payment Successful', 'Rs.100 successful', {
-          positionClass: 'toast-top-right',
-          titleClass: 'mytoast',
-        });
-        this.router.navigate(['Ticket']);
-      } else if (result.errors && result.errors.length > 0) {
-        this.errorMessage = result.errors[0]?.message || 'Payment failed.';
-      } else {
-        this.errorMessage = 'Payment failed.';
+    if (this.selectedPaymentMethod === 'card') {
+      if (!this.card) {
+        this.errorMessage = 'Payment method is not available.';
+        this.isPaymentLoading = false;
+        return;
       }
-    } catch (error) {
-      console.error('Tokenization error:', error);
-      this.errorMessage = 'Payment failed. Please try again.';
-    } finally {
-      this.isPaymentLoading = false;
+
+      try {
+        const result = await this.card.tokenize();
+        if (result.status === 'OK') {
+          this.showSuccess();
+        } else {
+          this.errorMessage =
+            result.errors?.[0]?.message || 'Card payment failed.';
+        }
+      } catch (error) {
+        console.log(error);
+        this.errorMessage = 'Card payment failed. Please try again.';
+      }
+    } else if (this.selectedPaymentMethod === 'googlePay') {
+      setTimeout(() => {
+        this.showSuccess('Google Pay');
+      }, 1500);
+    } else if (this.selectedPaymentMethod === 'paytm') {
+      setTimeout(() => {
+        this.showSuccess('Paytm');
+      }, 1500);
     }
+
+    this.isPaymentLoading = false;
+  }
+
+  showSuccess(method: string = 'Card') {
+    this.toaster.success(
+      `${method} Payment Successful`,
+      `Rs.${this.totalAmount} paid successfully`,
+      {
+        positionClass: 'toast-top-right',
+        titleClass: 'mytoast',
+      }
+    );
+    this.router.navigate(['Ticket']);
   }
 }

@@ -1,24 +1,38 @@
 <div class="payment-container">
   <h2>Complete Your Payment</h2>
-  <div id="card-container"></div>
+
+  <!-- Card Logos -->
+  <div class="card-logos">
+    <img src="https://img.icons8.com/color/48/000000/visa.png" alt="Visa" />
+    <img
+      src="https://img.icons8.com/color/48/000000/mastercard-logo.png"
+      alt="MasterCard"
+    />
+    <img src="https://img.icons8.com/color/48/000000/amex.png" alt="Amex" />
+  </div>
+
+  <!-- Card Form from Square -->
+  <div class="form-group">
+    <label for="card-container">Card Details</label>
+    <div id="card-container"></div>
+  </div>
+
+  <!-- Pay Button -->
   <button
     id="card-button"
     [disabled]="isPaymentLoading"
     (click)="handlePayment()"
     class="pay-button"
   >
-    <ng-template>
-      <div class="spinner-border text-primary"></div>
-    </ng-template>
-    <span *ngIf="isPaymentLoading">Processing...</span>
-
-    <ng-container>
-      <div *ngIf="isPaymentLoading">
-        <div class="spinner-border text-primary"></div>
-      </div>
-      <span *ngIf="!isPaymentLoading"
-        >Pay Now {{ totalAmount | currency : "INR" }}</span
-      >
-    </ng-container>
+    <span *ngIf="isPaymentLoading">
+      <div class="spinner-border text-light spinner-sm me-2"></div>
+      Processing...
+    </span>
+    <span *ngIf="!isPaymentLoading">
+      Pay Now {{ totalAmount | currency : "INR" }}
+    </span>
   </button>
+
+  <!-- Error -->
+  <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
 </div>

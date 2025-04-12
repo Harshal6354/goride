@@ -5,8 +5,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { auth1Guard } from './guard/auth1.guard';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { BookdetailsComponent } from './pages/bookdetails/bookdetails.component';
-import { CarsoComponent } from './carso/carso.component';
 import { OfferComponent } from './pages/offer/offer.component';
+import { AboutUsComponent } from './pages/about-us/about-us.component';
+import { NeedHelpComponent } from './pages/need-help/need-help.component';
 
 export const routes: Routes = [
   {
@@ -45,13 +46,21 @@ export const routes: Routes = [
     component: BookdetailsComponent,
     canActivate: [auth1Guard],
   },
-  {
-    path: 'cars',
-    component: CarsoComponent,
-  },
+
   {
     path: 'offer',
     component: OfferComponent,
+    canActivate: [auth1Guard],
+  },
+  {
+    path: 'about-us',
+    component: AboutUsComponent,
+    canActivate: [auth1Guard],
+  },
+  {
+    path: 'need-help',
+    component: NeedHelpComponent,
+    canActivate: [auth1Guard],
   },
 
   // Catch-all route for unknown paths

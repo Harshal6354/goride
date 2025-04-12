@@ -1,7 +1,7 @@
 <!-- Search Form -->
 <div class="container">
   <header class="my-4">
-    <h1 class="text-center">Bus Booking System</h1>
+    <h1 class="text-center">Book Bus Tickets</h1>
   </header>
   <section>
     <div class="container mt-5 d-flex justify-content-center">
@@ -17,7 +17,7 @@
                 name="fromLocation"
                 [(ngModel)]="searchObj.fromLocation"
               >
-                <option value="">Select from Location</option>
+                <option value="">Select from location</option>
                 @for (item of busList; track $index) {
                 <option [value]="item.fromLocation">
                   {{ item.fromLocation }}
@@ -89,6 +89,62 @@
             >
               <h5 class="card-title">Rajkot to Ahmedabad</h5>
               <p class="card-text">A/C Sleeper (2+1)</p>
+            </div>
+
+            <div class="col-md-9">
+              <div class="card-body row">
+                <div class="col-md-2">
+                  <p class="card-text">2025-04-21T17:00:04</p>
+                  <p class="card-text">departureTime</p>
+                </div>
+
+                <div class="col-md-2">
+                  <p class="card-text"><strong>13h 55m</strong></p>
+                  <p class="card-text">Duration</p>
+                </div>
+
+                <div class="col-md-2">
+                  <p class="card-text">
+                    <strong>2025-04-21 T07:00:10</strong>
+                  </p>
+                  <p class="card-text">Arrival</p>
+                  <p class="text-danger">18-Aug</p>
+                </div>
+
+                <div class="col-md-2">
+                  <p class="card-text"><strong>4.0</strong> ⭐</p>
+                  <p class="card-text">567 Ratings</p>
+                </div>
+
+                <div class="col-md-2">
+                  <p class="card-text">
+                    <strong>2000 INR</strong>
+                  </p>
+                  <p class="card-text">
+                    <b>34</b> Seats are available out of
+                    <b>40</b>
+                  </p>
+                </div>
+                <div class="col-md-2 text-end">
+                  <button class="btn btn-danger" (click)="gotobookingFromS()">
+                    Book Seat
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-3">
+          <div class="row g-0">
+            <div
+              class="col-md-3 d-flex flex-column justify-content-center align-items-center"
+            >
+              <h5 class="card-title">Gandhinagar to Ahmedabad</h5>
+              <p class="card-text">A/C Sleeper 2</p>
             </div>
 
             <div class="col-md-9">
@@ -345,7 +401,7 @@
             "
           >
             <img
-              src="https://static.abhibus.com/offerbanners/Jul2024/03/1719986415-720x360.webp"
+              src="https://static.abhibus.com/offerbanners/Apr2025/12/1744396546-720x360LSGVSGTSUPER60.png"
               class="card-img-top"
               alt="Special Offers"
               style="height: 200px; object-fit: cover"
@@ -370,7 +426,7 @@
             "
           >
             <img
-              src="https://static.abhibus.com/busgallery/offerbanners/Nov2023/24/1700820925-720x360-ixigo-au.png"
+              src="https://static.abhibus.com/offerbanners/Apr2025/12/1744396792-1250X324%20HYD%20vs%20PK.png"
               class="card-img-top"
               alt="Special Offers"
               style="height: 200px; object-fit: cover"
@@ -378,8 +434,7 @@
             <div class="card-body">
               <h5 class="card-title">Special Offers 🎉</h5>
               <p class="card-text">
-                Exclusive holiday discounts on all tickets. Book now and save
-                big!
+                Exclusive ipl discounts on all tickets. Book now and save big!
               </p>
               <a href="#" class="btn btn-danger">Book Now</a>
             </div>
