@@ -1,7 +1,7 @@
 export class user {
   userId: number = 0;
   userName: string = '';
-  emailId: string = '';
+  email: string = '';
   fullName: string = '';
   role: string = '';
   createDate: Date = new Date();

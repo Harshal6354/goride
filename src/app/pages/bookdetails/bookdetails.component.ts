@@ -1,7 +1,9 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Seat } from '../../core/model/interface/seat.model';
 import { saveAs } from 'file-saver';
+import { HttpClient } from '@angular/common/http';
+import { MasterService } from '../../services/master.service';
 
 @Component({
   selector: 'app-bookdetails',
@@ -12,6 +14,8 @@ import { saveAs } from 'file-saver';
 })
 export class BookdetailsComponent implements OnInit {
   // ✅ Implements OnInit correctly
+  http = inject(HttpClient);
+  master = inject(MasterService);
   totalAmount: number = 0;
 
   bookedTickets: Seat[] = [];
@@ -41,5 +45,16 @@ export class BookdetailsComponent implements OnInit {
     }, (content += `Price:${this.totalAmount}\n`));
     const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
     saveAs(blob, 'Booked-Tickets.txt');
+
+    this.master
+      .saveBookingDetails(this.bookedTickets, this.totalAmount)
+      .subscribe({
+        next: (response) => {
+          console.log('Booking details saved to database:', response);
+        },
+        error: (error) => {
+          console.error('Error saving booking details:', error);
+        },
+      });
   }
 }

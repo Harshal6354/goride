@@ -13,6 +13,6 @@ export interface Bus {
 
 export interface searchObj {
   fromLocation: string;
-  toloction: string;
+  toLoction: string;
   travelDate: Date;
 }

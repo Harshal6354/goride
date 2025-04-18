@@ -259,6 +259,7 @@ export class SearchComponent {
     const { fromLocation, toLocation } = this.searchObj;
     console.log('From:', fromLocation, 'To:', toLocation); // Debugging line
     if (!fromLocation || !toLocation) {
+      this.newbusList = []; // Clear the list if search fields are empty
       return;
     }
     this.newbusList = this.busList.filter(
@@ -266,6 +267,16 @@ export class SearchComponent {
         item.fromLocation.toLowerCase() === fromLocation.toLowerCase() &&
         item.toLocation.toLowerCase() === toLocation.toLowerCase()
     );
+    // Remove duplicate buses based on fromLocation and toLocation
+    const uniqueCities = new Map();
+    this.newbusList = this.newbusList.filter((bus) => {
+      const key = bus.fromLocation + '-' + bus.toLocation;
+      if (!uniqueCities.has(key)) {
+        uniqueCities.set(key, bus);
+        return true;
+      }
+      return false;
+    });
 
     console.log('Filtered Bus List:', this.newbusList); // Debugging line
   }

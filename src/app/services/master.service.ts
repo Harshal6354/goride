@@ -1,30 +1,33 @@
-import { inject, Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
+import { Observable } from 'rxjs';
+import { Bus } from '../core/model/interface/bus.model';
+import { Seat } from '../core/model/interface/seat.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MasterService {
-  router = inject(Router);
-  //   apiURL:string='https://projectapi.gerasim.in/api/BusBooking/';
-  //   constructor(private http:HttpClient) { }
+  private apiUrl = 'http://localhost:5000/api/buses'; // Replace with your API URL
 
-  //   getLocations():Observable <any[]>{
-  //     return this.http.get<any[]>(this.apiURL+"GetBusLocations")
-  //   }
-  //   searchBus(from:number,to:number,travelDate:string):Observable <any[]>{
-  //     return this.http.get<any[]>(`${this.apiURL}searchBus?fromLoction=${from}&toLoction=${to}&travelDate=${travelDate}`)
-  //   }
-  //   getScehuleById(id:number){
-  //   return this.http.get<any[]>(this.apiURL+"getBusScheduleById?id=6"+id)
-  // }
-  //   onRegisterUser(obj:any){
-  //     return this.http.post<any[]>(this.apiURL+"AddNewUser",obj)
-  // }
+  constructor(private http: HttpClient) {}
 
-  // goToPayment(seat: Seat) {
-  //     if (seat.isBooked && seat.passenger) {
-  //       this.router.navigate(['/payment'], { queryParams: { seats: JSON.stringify([seat]) } });
-  //     }
-  //   }
+  // Method to fetch bus list based on source and destination
+  getBusList(from: string, to: string): Observable<Bus[]> {
+    const params = new HttpParams().set('from', from).set('to', to);
+
+    return this.http.get<Bus[]>(`${this.apiUrl}/search`, { params });
+  }
+
+  saveBookingDetails(
+    bookedTickets: Seat[],
+    totalAmount: number
+  ): Observable<any> {
+    const bookingData = { bookedTickets, totalAmount };
+    return this.http.post<any>(
+      'http://localhost:5000/api/saveBooking',
+      bookingData
+    );
+  }
 }

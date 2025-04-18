@@ -1,8 +1,18 @@
-import { CanActivateFn, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import {
+  CanActivateFn,
+  Router,
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+} from '@angular/router';
 import { inject } from '@angular/core';
-export const auth1Guard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+import { CookieService } from 'ngx-cookie-service';
+export const auth1Guard: CanActivateFn = (
+  route: ActivatedRouteSnapshot,
+  state: RouterStateSnapshot
+) => {
+  const cookie = inject(CookieService);
   const router = inject(Router);
-  const isAuthenticated = Boolean(localStorage.getItem('auth1'));
+  const isAuthenticated = Boolean(cookie.get('token'));
   if (state.url === '/login') {
     if (isAuthenticated) {
       router.navigate(['/search']); // Redirect if already logged in

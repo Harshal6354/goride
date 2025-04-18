@@ -18,7 +18,6 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    canActivate: [auth1Guard],
   },
   {
     path: 'search',

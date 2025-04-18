@@ -19,7 +19,7 @@ export class BookingComponent implements OnInit {
 
   // Seat data - default values
 
-  seatArray: Seat[] = Array.from({ length: 21 }, (_, i) => ({
+  seatArray: Seat[] = Array.from({ length: 24 }, (_, i) => ({
     seat: (i + 1).toString(),
     isBooked: false,
     passenger: null,
