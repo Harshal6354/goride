@@ -1,18 +1,18 @@
 import { Routes } from '@angular/router';
+import { LoginComponent } from './pages/login/login.component';
 import { SearchComponent } from './pages/search/search.component';
 import { BookingComponent } from './pages/booking/booking.component';
-import { LoginComponent } from './pages/login/login.component';
-import { auth1Guard } from './guard/auth1.guard';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { BookdetailsComponent } from './pages/bookdetails/bookdetails.component';
 import { OfferComponent } from './pages/offer/offer.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { NeedHelpComponent } from './pages/need-help/need-help.component';
+import { auth1Guard } from './guard/auth1.guard';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'search',
     pathMatch: 'full',
   },
   {
@@ -26,7 +26,6 @@ export const routes: Routes = [
   },
   {
     path: 'booking',
-
     component: BookingComponent,
     canActivate: [auth1Guard],
   },
@@ -45,7 +44,6 @@ export const routes: Routes = [
     component: BookdetailsComponent,
     canActivate: [auth1Guard],
   },
-
   {
     path: 'offer',
     component: OfferComponent,
@@ -61,7 +59,8 @@ export const routes: Routes = [
     component: NeedHelpComponent,
     canActivate: [auth1Guard],
   },
-
-  // Catch-all route for unknown paths
-  { path: '**', redirectTo: 'login' },
+  {
+    path: '**',
+    redirectTo: 'login',
+  },
 ];

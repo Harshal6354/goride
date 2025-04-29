@@ -53,6 +53,7 @@ h2 {
   color: #ffffff;
   border: none;
   transition: background-color 0.3s ease;
+  cursor: pointer; /* ✅ Ensure cursor changes on active button */
 }
 
 .pay-button:hover {
@@ -69,4 +70,69 @@ h2 {
   color: red;
   text-align: center;
   font-size: 14px;
+}
+
+.offers-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 20px 0;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
+}
+
+.offer-item {
+  position: relative;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  outline: none; /* ✅ Prevent default outline unless focused */
+}
+
+.offer-item:focus-visible {
+  outline: 2px solid #28a745; /* ✅ Keyboard accessibility */
+}
+
+.offer-img {
+  width: 320px;
+  height: 160px;
+  border-radius: 12px;
+  transition: 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.offer-img.dimmed {
+  opacity: 0.4;
+  filter: blur(1px);
+}
+
+.offer-item::after {
+  content: attr(data-offer);
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: 0.3s ease;
+}
+
+.offer-item:hover::after,
+.offer-item:focus-visible::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#Special1 {
+  /* ❌ Avoid using hard-coded rem values for layout positioning */
+  /* ✅ Use Flexbox or Grid to center text instead */
+  text-align: center;
+  margin-top: 20px;
+  font-weight: bold;
+  color: rgb(53, 209, 100);
 }

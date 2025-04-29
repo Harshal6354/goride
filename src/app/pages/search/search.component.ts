@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -16,7 +16,7 @@ interface faqList {
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
 })
-export class SearchComponent {
+export class SearchComponent implements OnInit {
   router = inject(Router);
   constructor(private service1: MasterService) {}
   busList: Bus[] = [
@@ -176,84 +176,30 @@ export class SearchComponent {
       toLocation: 'Mumbai',
       rating: 4.2,
     },
-    {
-      price: 1050,
-      totalSeats: 38,
-      availableSeat: 20,
-      arrivalTime: '2025-02-25T07:10:00',
-      scheduleID: 9,
-      departureTime: '2025-02-25T17:30:00',
-      busName: 'Shree Travels 2.0',
-      fromLocation: 'Ahmedabad',
-      toLocation: 'Rajkot',
-      rating: 3.8,
-    },
-    {
-      price: 1150,
-      totalSeats: 42,
-      availableSeat: 15,
-      arrivalTime: '2025-02-26T05:30:00',
-      scheduleID: 10,
-      departureTime: '2025-02-26T15:45:00',
-      busName: 'Royal Travel',
-      fromLocation: 'Surat',
-      toLocation: 'Mumbai',
-      rating: 4.3,
-    },
-    {
-      price: 1250,
-      totalSeats: 50,
-      availableSeat: 12,
-      arrivalTime: '2025-02-27T08:00:00',
-      scheduleID: 11,
-      departureTime: '2025-02-27T18:00:00',
-      busName: 'Lux Express 2.5',
-      fromLocation: 'Vadodara',
-      toLocation: 'Ahmedabad',
-      rating: 4.6,
-    },
-    {
-      price: 1300,
-      totalSeats: 48,
-      availableSeat: 8,
-      arrivalTime: '2025-02-28T10:30:00',
-      scheduleID: 12,
-      departureTime: '2025-02-28T20:30:00',
-      busName: 'Mega-Deluxe',
-      fromLocation: 'Rajkot',
-      toLocation: 'Surat',
-      rating: 4.8,
-    },
-    {
-      price: 950,
-      totalSeats: 30,
-      availableSeat: 5,
-      arrivalTime: '2025-03-01T11:00:00',
-      scheduleID: 13,
-      departureTime: '2025-03-01T21:00:00',
-      busName: 'Gujarat Express',
-      fromLocation: 'Ahmedabad',
-      toLocation: 'Surat',
-      rating: 3.9,
-    },
-    {
-      price: 1100,
-      totalSeats: 35,
-      availableSeat: 22,
-      arrivalTime: '2025-03-02 T07:45:00',
-      scheduleID: 14,
-      departureTime: '2025-03-02T17:30:00',
-      busName: 'Deluxe Superbus',
-      fromLocation: 'Mumbai',
-      toLocation: 'Vadodara',
-      rating: 4.4,
-    },
   ];
   newbusList: Bus[] = [];
   searchObj: Partial<Bus> = {
     fromLocation: '',
     toLocation: '',
   };
+
+  // Extract unique locations from the bus list
+  uniqueFromLocations: string[] = [];
+  uniqueToLocations: string[] = [];
+
+  // Filter the unique values for fromLocation and toLocation
+  getUniqueLocations() {
+    this.uniqueFromLocations = [
+      ...new Set(this.busList.map((bus) => bus.fromLocation)),
+    ];
+    this.uniqueToLocations = [
+      ...new Set(this.busList.map((bus) => bus.toLocation)),
+    ];
+  }
+
+  ngOnInit() {
+    this.getUniqueLocations();
+  }
 
   onSearch() {
     const { fromLocation, toLocation } = this.searchObj;
@@ -291,6 +237,7 @@ export class SearchComponent {
   }
   gotobookingFromS() {
     this.router.navigate(['/booking']);
+    console.log('login');
   }
 
   faqList: faqList[] = [

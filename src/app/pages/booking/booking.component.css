@@ -67,3 +67,34 @@
 .btn-warning:hover {
   background-color: #e00000;
 }
+
+/* Invalid input fields */
+.is-invalid {
+  border-color: #dc3545;
+}
+
+/* Invalid feedback messages */
+.invalid-feedback {
+  color: #dc3545;
+  font-size: 0.875em;
+}
+
+/* Offer Section */
+.text-danger {
+  color: red;
+}
+
+.text-success {
+  color: green;
+}
+
+.fw-bold {
+  font-weight: bold;
+}
+
+.fs-5 {
+  font-size: 1.25rem;
+}
+.whychoose {
+  margin-top: 2rem;
+}

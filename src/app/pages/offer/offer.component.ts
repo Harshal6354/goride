@@ -59,6 +59,6 @@ export class OfferComponent {
 
   applyOffer(offer: offer) {
     this.toast.success(`Applied Offer: ${offer.title}`, '', { timeOut: 5000 });
-    this.router.navigateByUrl('serach');
+    this.router.navigate(['search']);
   }
 }

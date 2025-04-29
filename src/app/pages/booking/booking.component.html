@@ -1,3 +1,12 @@
+<section class="mb-3 whychoose">
+  <h2 class="text-center mb-3 text-danger">
+    <b>CHOOSE YOUR FAVOURITE SEAT </b>
+    <h4 style="color: rgb(148, 202, 122)">
+      <br />
+      Please select your preferred seat from the available options.
+    </h4>
+  </h2>
+</section>
 <section id="booking-form" class="my-4">
   <div class="container mt-5 mb-10rem">
     <div class="row">
@@ -29,7 +38,7 @@
             Ticket Price per Seat: ₹{{ ticketPrice }}
           </div>
 
-          <form (ngSubmit)="submitPassengers()">
+          <form (ngSubmit)="submitPassengers()" #bookingForm="ngForm">
             <table class="table table-bordered">
               <thead class="table-light">
                 <tr>
@@ -50,7 +59,14 @@
                       [(ngModel)]="seat.passenger!.name"
                       name="name{{ seat.seat }}"
                       required
+                      #name="ngModel"
                     />
+                    <div
+                      *ngIf="name.invalid && name.touched"
+                      class="text-danger"
+                    >
+                      Name is required.
+                    </div>
                   </td>
                   <td>
                     <input
@@ -59,7 +75,11 @@
                       [(ngModel)]="seat.passenger!.age"
                       name="age{{ seat.seat }}"
                       required
+                      #age="ngModel"
                     />
+                    <div *ngIf="age.invalid && age.touched" class="text-danger">
+                      Age is required.
+                    </div>
                   </td>
                   <td>
                     <select
@@ -67,12 +87,19 @@
                       [(ngModel)]="seat.passenger!.gender"
                       name="gender{{ seat.seat }}"
                       required
+                      #gender="ngModel"
                     >
                       <option value="">Select</option>
                       <option value="Male">Male</option>
                       <option value="Female">Female</option>
                       <option value="Other">Other</option>
                     </select>
+                    <div
+                      *ngIf="gender.invalid && gender.touched"
+                      class="text-danger"
+                    >
+                      Gender is required.
+                    </div>
                   </td>
                   <td>
                     <button
@@ -86,7 +113,12 @@
                 </tr>
               </tbody>
             </table>
-            <button type="submit" class="btn btn-primary">
+            <!-- Disable the submit button if the form is invalid -->
+            <button
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="bookingForm.invalid"
+            >
               Book All Seats
             </button>
           </form>

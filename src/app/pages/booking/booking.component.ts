@@ -1,9 +1,15 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule, ActivatedRoute } from '@angular/router';
+import { Router, RouterModule, } from '@angular/router';
 import { Seat } from '../../core/model/interface/seat.model';
 import { Service1Service } from '../../services/service1.service';
+
+export interface Passenger {
+  name: string;
+  age: number;
+  gender: string;
+}
 
 @Component({
   selector: 'app-booking',
@@ -15,18 +21,20 @@ import { Service1Service } from '../../services/service1.service';
 export class BookingComponent implements OnInit {
   router = inject(Router);
   service1 = inject(Service1Service);
-  selectedSeats: Seat[] = []; // Stores currently selected seats for booking
-
-  // Seat data - default values
-
+  selectedSeats: Seat[] = [];
   seatArray: Seat[] = Array.from({ length: 24 }, (_, i) => ({
     seat: (i + 1).toString(),
     isBooked: false,
     passenger: null,
     isSelected: false,
   }));
+
+  ticketPrice: number = 1000; // Default ticket price
+  offerDiscount: number = 100; // Discount for the offer
+  offerActive: boolean = false; // If the offer is active
+  discountedPrice: number = this.ticketPrice;
+
   ngOnInit() {
-    // Load saved seat data from local storage if available
     const savedSeats = localStorage.getItem('seatArray');
     if (savedSeats) {
       this.seatArray = JSON.parse(savedSeats);
@@ -37,9 +45,7 @@ export class BookingComponent implements OnInit {
   selectSeat(seat: Seat) {
     if (!seat.isBooked) {
       const index = this.selectedSeats.findIndex((s) => s.seat === seat.seat);
-
       if (index === -1) {
-        // Ensure passenger is always initialized
         this.selectedSeats.push({
           ...seat,
           passenger: seat.passenger || { name: '', age: '', gender: '' },
@@ -50,38 +56,34 @@ export class BookingComponent implements OnInit {
     }
   }
 
-  // Function to dynamically assign seat colors based on status
   getSeatClass(seat: Seat) {
     if (seat.isBooked) {
-      return 'btn-success'; // Green for booked seats
+      return 'btn-success';
     } else if (this.selectedSeats.some((s) => s.seat === seat.seat)) {
-      return 'btn-warning'; //yellow seat
+      return 'btn-warning';
     } else {
-      return 'btn-primary'; //blue seat
+      return 'btn-primary';
     }
   }
 
-  // Remove a selected seat before confirming booking
   removeSelectedSeat(seat: Seat) {
     this.selectedSeats = this.selectedSeats.filter((s) => s.seat !== seat.seat);
   }
 
-  // Submit selected seats and store booking details
   submitPassengers() {
     this.selectedSeats.forEach((selectedSeat) => {
       const seatIndex = this.seatArray.findIndex(
         (s) => s.seat === selectedSeat.seat
       );
       if (seatIndex !== -1) {
-        this.seatArray[seatIndex] = { ...selectedSeat, isBooked: true }; // Mark as booked
+        this.seatArray[seatIndex] = { ...selectedSeat, isBooked: true };
       }
     });
 
     localStorage.setItem('seatArray', JSON.stringify(this.seatArray));
-    this.selectedSeats = []; // Clear selected seats after booking
+    this.selectedSeats = [];
   }
 
-  // Cancel a booked seat
   cancelBooking(seat: Seat) {
     seat.isBooked = false;
     seat.passenger = null;
@@ -92,19 +94,12 @@ export class BookingComponent implements OnInit {
     return this.seatArray.some((seat) => seat.isBooked);
   }
 
-  // Navigate to payment page for a single seat
-  // goToPayment(seat: Seat) {
-  //   if (seat.isBooked && seat.passenger) {
-  //     this.router.navigate(['/payment'], { queryParams: { seats: JSON.stringify([seat]) } });
-  //   }
-  // }
   goToPayment(seat: Seat) {
     if (seat.isBooked && seat.passenger) {
       this.service1.navigateToPayment([seat]);
     }
   }
 
-  // Navigate to payment page for all booked seats
   payForAll() {
     const bookedSeats = this.seatArray.filter((seat) => seat.isBooked);
     if (bookedSeats.length > 0) {
@@ -115,28 +110,21 @@ export class BookingComponent implements OnInit {
       );
 
       this.service1.navigateToPayment(bookedSeats);
-      // this.router.navigate(['/payment'], { queryParams: { seats: JSON.stringify(bookedSeats) } });
     } else {
       alert('No booked seats available for payment.');
     }
   }
 
-  //booking price
-  ticketPrice: number = 0;
-
-  constructor(private route: ActivatedRoute) {
-    this.route.queryParams.subscribe((params) => {
-      this.ticketPrice = +params['price'] || 0;
-    });
-  }
-
-  get totalSelectedAmount(): number {
-    return this.selectedSeats.length * this.ticketPrice;
+  // Apply the discount offer
+  applyDiscount() {
+    this.offerActive = true;
+    this.discountedPrice = this.ticketPrice - this.offerDiscount;
   }
 
   get totalBookedAmount(): number {
     return (
-      this.seatArray.filter((seat) => seat.isBooked).length * this.ticketPrice
+      this.seatArray.filter((seat) => seat.isBooked).length *
+      this.discountedPrice
     );
   }
 }

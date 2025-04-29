@@ -1,4 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav
+  *ngIf="showNavAndFooter"
+  class="navbar navbar-expand-lg navbar-light"
+>
   <a class="navbar-brand" href="#"><i class="fa-solid fa-bus-simple"></i></a>
 
   <button
@@ -17,25 +20,21 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active navbtn">
         <a class="nav-link" routerLink="search" name="search">
-          <b>Home</b> <span class="sr-only">(current)</span>
+          Home <span class="sr-only">(current)</span>
         </a>
       </li>
       <li class="nav-item active navbtn">
-        <a class="nav-link" routerLink="offer" name="offer"><b>Offer</b></a>
+        <a class="nav-link" routerLink="offer" name="offer">Offer</a>
       </li>
       <li class="nav-item active navbtn">
-        <a class="nav-link" routerLink="Ticket" name="Ticket"
-          ><b>My Tickets</b></a
-        >
+        <a class="nav-link" routerLink="Ticket" name="Ticket">My Tickets</a>
       </li>
       <li class="nav-item active navbtn">
-        <a class="nav-link" routerLink="about-us" name="about-us"
-          ><b>About us</b></a
-        >
+        <a class="nav-link" routerLink="about-us" name="about-us">About us</a>
       </li>
       <li class="nav-item active navbtn">
         <a class="nav-link" routerLink="need-help" name="need-help"
-          ><b>Need Help </b></a
+          >Need Help</a
         >
       </li>
     </ul>
@@ -59,4 +58,4 @@
   <router-outlet></router-outlet>
 </div>
 
-<app-foo></app-foo>
+<app-foo *ngIf="showNavAndFooter"></app-foo>

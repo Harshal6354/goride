@@ -66,10 +66,14 @@ export class PaymentComponent implements OnInit {
       this.isPaymentLoading = true;
 
       if (result.status === 'OK') {
-        this.toaster.success('Payment Successful', 'Rs.100 successful', {
-          positionClass: 'toast-top-right',
-          titleClass: 'mytoast',
-        });
+        this.toaster.success(
+          'Payment Successful',
+          `${this.totalAmount} successfull `,
+          {
+            positionClass: 'toast-top-right',
+            titleClass: 'mytoast',
+          }
+        );
         this.router.navigate(['Ticket']);
       } else if (result.errors && result.errors.length > 0) {
         this.errorMessage = result.errors[0]?.message || 'Payment failed.';
@@ -81,6 +85,113 @@ export class PaymentComponent implements OnInit {
       this.errorMessage = 'Payment failed. Please try again.';
     } finally {
       this.isPaymentLoading = false;
+    }
+  }
+  offers = [
+    {
+      img: 'assets/20discont.jpeg',
+      title: 'Special Offers 🎉',
+      text: 'Exclusive holiday discounts on all tickets. Book now and save big!',
+    },
+    {
+      img: 'assets/5.webp',
+      title: 'Card Discounts 🎉',
+      text: 'Exclusive Card discounts on all tickets. Book now and save big!',
+    },
+    {
+      img: 'assets/4.png',
+      title: 'IPL Offers 🎉',
+      text: '300 Rs discount on card',
+    },
+    {
+      img: 'assets/2.png',
+      title: 'IPL Offers 🎉',
+      text: '400 Rs discount on card',
+    },
+  ];
+
+  offerApplied = false;
+
+  // applyDiscount() {
+  //   if (!this.offerApplied) {
+  //     this.totalAmount = Math.max(this.totalAmount - 100, 0); // avoid negative total
+  //     this.toaster.success('₹100 Discount Applied!', '', {
+  //       positionClass: 'toast-top-center',
+  //     });
+  //     this.offerApplied = true;
+  //   } else {
+  //     this.toaster.info('Discount already applied!', '', {
+  //       positionClass: 'toast-top-center',
+  //     });
+  //   }
+  // }
+  // applyDiscount1() {
+  //   if (!this.offerApplied) {
+  //     this.totalAmount = Math.max(this.totalAmount - 200, 0); // avoid negative total
+  //     this.toaster.success('₹100 Discount Applied!', '', {
+  //       positionClass: 'toast-top-center',
+  //     });
+  //     this.offerApplied = true;
+  //   } else {
+  //     this.toaster.info('Discount already applied!', '', {
+  //       positionClass: 'toast-top-center',
+  //     });
+  //   }
+  // }
+  // applyDiscount2() {
+  //   if (!this.offerApplied) {
+  //     this.totalAmount = Math.max(this.totalAmount - 300, 0); // avoid negative total
+  //     this.toaster.success('₹100 Discount Applied!', '', {
+  //       positionClass: 'toast-top-center',
+  //     });
+  //     this.offerApplied = true;
+  //   } else {
+  //     this.toaster.info('Discount already applied!', '', {
+  //       positionClass: 'toast-top-center',
+  //     });
+  //   }
+  // }
+  // applyDiscount3() {
+  //   if (!this.offerApplied) {
+  //     this.totalAmount = Math.max(this.totalAmount - 400, 0); // avoid negative total
+  //     this.toaster.success('₹100 Discount Applied!', '', {
+  //       positionClass: 'toast-top-center',
+  //     });
+  //     this.offerApplied = true;
+  //   } else {
+  //     this.toaster.info('Discount already applied!', '', {
+  //       positionClass: 'toast-top-center',
+  //     });
+  //   }
+  // }
+  // applyDiscount4() {
+  //   if (!this.offerApplied) {
+  //     this.totalAmount = Math.max(this.totalAmount - 100, 0); // avoid negative total
+  //     this.toaster.success('₹100 Discount Applied!', '', {
+  //       positionClass: 'toast-top-center',
+  //     });
+  //     this.offerApplied = true;
+  //   } else {
+  //     this.toaster.info('Discount already applied!', '', {
+  //       positionClass: 'toast-top-center',
+  //     });
+  //   }
+  // }
+  hoveredIndex = -1; // To track hovered image
+
+  applyDiscountByIndex(index: number) {
+    if (!this.offerApplied) {
+      const discounts = [100, 200, 300, 400, 500]; // You can update these as per logic
+      const discount = discounts[index] || 100;
+      this.totalAmount = Math.max(this.totalAmount - discount, 0);
+      this.toaster.success(`₹${discount} Discount Applied!`, '', {
+        positionClass: 'toast-top-center',
+      });
+      this.offerApplied = true;
+    } else {
+      this.toaster.info('Discount already applied!', '', {
+        positionClass: 'toast-top-center',
+      });
     }
   }
 }

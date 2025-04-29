@@ -1,35 +1,43 @@
 import { Component, inject } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
-import { trigger, transition, style, animate } from '@angular/animations';
+import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-need-help',
-  templateUrl: './need-help.component.html',
   standalone: true,
   imports: [CommonModule, FormsModule],
+  templateUrl: './need-help.component.html',
   styleUrls: ['./need-help.component.css'],
-  animations: [
-    trigger('fadeInUp', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(30px)' }),
-        animate(
-          '800ms ease-out',
-          style({ opacity: 1, transform: 'translateY(0)' })
-        ),
-      ]),
-    ]),
-  ],
 })
 export class NeedHelpComponent {
+  name: string = '';
+  email: string = '';
+  message: string = '';
   toast = inject(ToastrService);
-  submitHelpForm(form: NgForm): void {
-    if (form.valid) {
-      this.toast.success(
-        'Your query has been submitted. We will get back to you shortly.'
-      );
-      form.reset();
+  constructor(private http: HttpClient) {}
+
+  submitHelpForm() {
+    if (!this.name || !this.email || !this.message) {
+      alert('Please fill all fields');
+      return;
     }
+
+    const helpData = {
+      name: this.name,
+      email: this.email,
+      message: this.message,
+    };
+
+    this.http.post('http://localhost:5000/api/help', helpData).subscribe(
+      (response) => {
+        this.toast.success('Messge:', 'Successfully receive ');
+        console.log('Success', response);
+      },
+      (error) => {
+        console.error('Error', error);
+      }
+    );
   }
 }

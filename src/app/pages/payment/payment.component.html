@@ -9,6 +9,20 @@
       alt="MasterCard"
     />
     <img src="https://img.icons8.com/color/48/000000/amex.png" alt="Amex" />
+
+    <!-- Google Pay Logo -->
+    <img
+      src="assets/GPAY.jpeg"
+      alt="Google Pay"
+      style="width: 48px; height: 48px"
+    />
+
+    <!-- Paytm Logo -->
+    <img
+      src="assets/PAYTM.jpeg"
+      alt="Paytm"
+      style="width: 48px; height: 48px"
+    />
   </div>
 
   <!-- Card Form from Square -->
@@ -32,7 +46,25 @@
       Pay Now {{ totalAmount | currency : "INR" }}
     </span>
   </button>
-
-  <!-- Error -->
-  <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+</div>
+<h1 id="Special1">⚡️Add Offer⚡️</h1>
+<div class="offers-container">
+  <div
+    class="offer-item"
+    *ngFor="let offer of offers; let i = index"
+    [attr.data-offer]="offer.text"
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = -1"
+    (click)="applyDiscountByIndex(i)"
+    tabindex="0"
+    (keydown.enter)="applyDiscountByIndex(i)"
+    (keydown.space)="applyDiscountByIndex(i)"
+  >
+    <img
+      [src]="offer.img"
+      [alt]="offer.title"
+      class="offer-img"
+      [class.dimmed]="hoveredIndex !== -1 && hoveredIndex !== i"
+    />
+  </div>
 </div>

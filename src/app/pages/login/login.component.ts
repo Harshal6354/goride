@@ -87,6 +87,7 @@ export class LoginComponent {
           }
         },
         error: (err) => {
+          this.toast.error('Login', 'Failed please sign-up');
           console.error(err);
         },
       });
