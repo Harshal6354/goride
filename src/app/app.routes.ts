@@ -23,37 +23,30 @@ export const routes: Routes = [
   {
     path: 'booking',
     component: BookingComponent,
-    canActivate: [auth1Guard],
   },
   {
     path: 'booking/:id',
     component: BookingComponent,
-    canActivate: [auth1Guard],
   },
   {
     path: 'payment',
     component: PaymentComponent,
-    canActivate: [auth1Guard],
   },
   {
     path: 'Ticket',
     component: BookdetailsComponent,
-    canActivate: [auth1Guard],
   },
   {
     path: 'offer',
     component: OfferComponent,
-    canActivate: [auth1Guard],
   },
   {
     path: 'about-us',
     component: AboutUsComponent,
-    canActivate: [auth1Guard],
   },
   {
     path: 'need-help',
     component: NeedHelpComponent,
-    canActivate: [auth1Guard],
   },
   {
     path: '**',
