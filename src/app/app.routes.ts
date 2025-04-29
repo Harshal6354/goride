@@ -19,7 +19,6 @@ export const routes: Routes = [
   {
     path: 'search',
     component: SearchComponent,
-    canActivate: [auth1Guard],
   },
   {
     path: 'booking',
