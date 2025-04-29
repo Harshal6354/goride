@@ -15,10 +15,7 @@ export const routes: Routes = [
     redirectTo: 'search',
     pathMatch: 'full',
   },
-  {
-    path: 'login',
-    component: LoginComponent,
-  },
+
   {
     path: 'search',
     component: SearchComponent,
