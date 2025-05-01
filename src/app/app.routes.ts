@@ -8,17 +8,29 @@ import { OfferComponent } from './pages/offer/offer.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { NeedHelpComponent } from './pages/need-help/need-help.component';
 import { auth1Guard } from './guard/auth1.guard';
+import { AppComponent } from './app.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'search',
+    redirectTo: 'login',
     pathMatch: 'full',
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [auth1Guard],
   },
 
   {
+    path: '',
+    component: AppComponent,
+    children: [],
+  },
+  {
     path: 'search',
     component: SearchComponent,
+    canActivate: [auth1Guard],
   },
   {
     path: 'booking',
@@ -47,9 +59,5 @@ export const routes: Routes = [
   {
     path: 'need-help',
     component: NeedHelpComponent,
-  },
-  {
-    path: '**',
-    redirectTo: 'search',
   },
 ];
