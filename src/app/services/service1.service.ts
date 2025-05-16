@@ -32,7 +32,7 @@ export class Service1Service {
         // Ensure passenger is always initialized
         this.selectedSeats.push({
           ...seat,
-          passenger: seat.passenger || { name: '', age: '', gender: '' },
+          passenger: seat.passenger || { name:'', age: '', gender: '' },
         });
       } else {
         this.selectedSeats.splice(index, 1);

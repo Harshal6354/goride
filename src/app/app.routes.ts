@@ -13,13 +13,12 @@ import { AppComponent } from './app.component';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'search',
     pathMatch: 'full',
   },
   {
-    path: 'login',
-    component: LoginComponent,
-    canActivate: [auth1Guard],
+    path: 'search',
+    component: SearchComponent,
   },
 
   {
@@ -30,7 +29,6 @@ export const routes: Routes = [
   {
     path: 'search',
     component: SearchComponent,
-    canActivate: [auth1Guard],
   },
   {
     path: 'booking',
